@@ -1,4 +1,8 @@
-df = open("C:/Users/reima/OneDrive/Documentos/programação/aula de programação/v2.py/basededados.csv", "r")
+from pathlib import Path
+
+RAIZ = Path.cwd()
+
+df = open(RAIZ / "basededados.csv", "r")
 conteudo = df.read()
 print(conteudo)
 
