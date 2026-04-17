@@ -1,11 +1,8 @@
 from pathlib import Path
 
-import numpy as np
-import pandas as pd
-
 ROOT = Path.cwd()
 
-df = pd.read_csv(ROOT / "basededados.csv")
+df = open(ROOT / "basededados.csv", "r")
 print(df)
 
 while True:
