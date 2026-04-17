@@ -1,12 +1,6 @@
-from pathlib import Path
-
-import numpy as np
-import pandas as pd
-
-ROOT = Path.cwd()
-
-df = pd.read_csv(ROOT / "basededados.csv")
-print(df)
+df = open("C:/Users/reima/OneDrive/Documentos/programação/aula de programação/v2.py/basededados.csv", "r")
+conteudo = df.read()
+print(conteudo)
 
 while True:
     # -=-=-=-=-=- tela inicial =-=-=-=-=
