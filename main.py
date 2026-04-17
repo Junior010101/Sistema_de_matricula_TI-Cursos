@@ -24,13 +24,7 @@ while True:
         idade = input("idade:")
         turno = input("Turno(1-manha/2-noite):")
         curso = input("Curso(1-PHP/2-Java/3-Delphi):")
-        df.loc[len(df)] = {
-            "Nome": nome,
-            "matricula": matricula,
-            "sexo": "feminino" if sexo == "1" else "masculino",
-            "idade": idade,
-            "turno": "Manhã" if turno == "1" else "noite",
-            "curso": "PHP" if curso == "1" else "Java" if curso == "2" else "Delphi",
-        }
+        with open("basededados.csv", "a") as f:
+            f.write(f"{nome},{matricula},{'feminino' if sexo=='1' else 'masculino'},{idade},{'Manhã' if turno=='1' else 'noite'},{'PHP' if curso=='1' else 'Java' if curso=='2' else 'Delphi'}\n")
         print(df)
         print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
