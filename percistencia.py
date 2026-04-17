@@ -8,14 +8,19 @@ arquivo = open("dados.json", "r")
 arquivo1 = arquivo.read()
 arquivo.close()
 if arquivo1 == "":
-    cadastros = {}
+    cadastros = {
+        "Nome": "teste nome",
+        "matricula": "teste matricula",
+        "sexo": "sexo teste",
+        "idade":"idade texte",
+        "turno":"turno texte",
+        "curso":"curso texte",
+    }
 else:
     cadastros = js.loads(arquivo1)
 
-def salvar(): #=-=-=-=-=-=-=-=pega o dicionario de antes e trasforma em str e salva no arquivo Json
-    
+def salvar(): #=-=-=-=-=-=-=-=pega o dicionario de antes e trasforma em str e salva no arquivo Json =-=-=-=-=-=-=-=-=-=-=-=-=-=-
     arquivo = open("dados.json", "a")
     js.dump(cadastros, arquivo, indent=4)
     arquivo.close()
-
     print(cadastros)
