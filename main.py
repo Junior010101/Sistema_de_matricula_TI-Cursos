@@ -1,9 +1,9 @@
-from pathlib import Path
-
-ROOT = Path.cwd()
-
-df = open(ROOT / "basededados.csv", "r")
-print(df)
+df = open(
+    "C:/Users/reima/OneDrive/Documentos/programação/aula de programação/v2.py/basededados.csv",
+    "r",
+)
+conteudo = df.read()
+print(conteudo)
 
 while True:
     # -=-=-=-=-=- tela inicial =-=-=-=-=
