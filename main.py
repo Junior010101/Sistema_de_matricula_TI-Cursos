@@ -1,3 +1,4 @@
+# teste 
 df = open("C:/Users/reima/OneDrive/Documentos/programação/aula de programação/v2.py/basededados.csv", "r")
 conteudo = df.read()
 print(conteudo)
