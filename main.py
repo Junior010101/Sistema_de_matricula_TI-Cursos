@@ -1,12 +1,9 @@
-from ui import (
-    listar_por_curso,
-    listar_por_sexo
-)
+from menus import editar_aluno, listar_por_curso, listar_por_sexo, remover_aluno
+
 
 def menu():
     while True:
-        print("    TELA INICIAL    ")
-        print("TI Cursos")
+        print("\nTI Cursos\n")
         print("1 - Cadastrar Aluno")
         print("2 - Editar Aluno")
         print("3 - Remover Aluno")
@@ -17,15 +14,24 @@ def menu():
 
         opcao = input("Escolha: ")
 
-    
-        if opcao == "5":
+        if opcao == "2":
+            editar_aluno()
+
+        elif opcao == "3":
+            remover_aluno()
+
+        elif opcao == "5":
             listar_por_curso()
+
         elif opcao == "6":
             listar_por_sexo()
+
         elif opcao == "0":
             print("Saindo...")
             break
+
         else:
             print("Opção ainda não implementada!")
+
 
 menu()
