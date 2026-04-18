@@ -1,4 +1,4 @@
-from ui import (
+from menus import (
     listar_por_curso,
     listar_por_sexo
 )
