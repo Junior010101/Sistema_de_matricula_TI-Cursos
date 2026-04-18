@@ -15,4 +15,21 @@ if arquivo1 == "":
     }
 else:
     cadastros_pa = js.loads(arquivo1)
+
+# Lista com os cursos   
+cursos = {"PHP": {"manha": 210.0, "noite": 260.0}, "Java": {"manha": 320.0, "noite": 390.0}, "Python": {"manha": 290.0, "noite": 310.0}}
+alunos = []
+
+# Armazenamento dos alunos
+def calculo_da_mensalidade(curso, turno, idade, quantidade_de_cursos):
+    preco = cursos[curso][turno]
+    desconto = 0
+
+# Condição para os descontos
+    if quantidade_de_cursos > 1:
+        desconto = 0.30
+    elif idade > 45:
+        desconto = 0.15
+    valor_com_desconto = preco - (preco * desconto)
+    return valor_com_desconto
     
