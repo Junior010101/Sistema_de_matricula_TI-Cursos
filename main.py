@@ -1,43 +1,31 @@
-from pathlib import Path
+from ui import (
+    listar_por_curso,
+    listar_por_sexo
+)
 
-RAIZ = Path.cwd()
+def menu():
+    while True:
+        print("    TELA INICIAL    ")
+        print("TI Cursos")
+        print("1 - Cadastrar Aluno")
+        print("2 - Editar Aluno")
+        print("3 - Remover Aluno")
+        print("4 - Listagem Geral")
+        print("5 - Listagem por Curso")
+        print("6 - Listagem por Sexo")
+        print("0 - Sair")
 
-df = open(RAIZ / "basededados.csv", "r")
-conteudo = df.read()
-print(conteudo)
+        opcao = input("Escolha: ")
 
-while True:
-    # -=-=-=-=-=- tela inicial =-=-=-=-=
-    print(
-        "\nTI Cursos"
-        "\n1 - Cadastrar Aluno"
-        "\n2 – Editar Aluno"
-        "\n3 – Remover Aluno"
-        "\n4 - Listagem Geral"
-        "\n5 – Listagem por Curso"
-        "\n6 – Listagem por sexo"
-        "\n0 – Sair"
-    )
-    esco1 = int(input("Selecione ação: "))
-    # =-=-=-=-=-=-= Escolhas =-=-=-=-=-=
-    match esco1:
-        case 1:
-            print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
-            print("\n\nCadastro\n")
-            nome = input(
-                "Nome: "
-            )  # Nota: se o nome do aluno for igual a outro ele sobreescreve se alguem puder ajeitar agradeço
-            matricula = input("matricula:")
-            sexo = input("Sexo(1-fem/2-mas):")
-            idade = input("idade:")
-            turno = input("Turno(1-manha/2-noite):")
-            curso = input("Curso(1-PHP/2-Java/3-Delphi):")
-            with open("basededados.csv", "a") as f:
-                f.write(
-                    f"{nome},{matricula},{'feminino' if sexo=='1' else 'masculino'},{idade},{'Manhã' if turno=='1' else 'noite'},{'PHP' if curso=='1' else 'Java' if curso=='2' else 'Delphi'}\n"
-                )
-            print(df)
-            print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
-        case _:
-            print("Digite um número válido!")
-            continue
+    
+        if opcao == "5":
+            listar_por_curso()
+        elif opcao == "6":
+            listar_por_sexo()
+        elif opcao == "0":
+            print("Saindo...")
+            break
+        else:
+            print("Opção ainda não implementada!")
+
+menu()
