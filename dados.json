@@ -1,0 +1,26 @@
+{
+    "aluno_teste": {
+        "matricula": "matricula teste",
+        "sexo": "sexo teste",
+        "idade": "50",
+        "turno": "manha",
+        "curso": "PHP",
+        "quant_curso": "2"
+    },
+    "aluno_teste2": {
+        "matricula": "matricula teste2",
+        "sexo": "sexo teste2",
+        "idade": "30",
+        "turno": "noite",
+        "curso": "java",
+        "quant_curso": "1"
+    },
+    "aluno_teste3": {
+        "matricula": "matricula teste2",
+        "sexo": "sexo teste2",
+        "idade": "20",
+        "turno": "noite",
+        "curso": "PHP",
+        "quant_curso": "3"
+    }
+}
