@@ -34,14 +34,12 @@ def salvar_arquivo(novos_dados):
     with open(CAMINHO_JSON, "w") as arquivo:
         dump(novos_dados, arquivo, indent=4)
 
-salvar_arquivo(clientes)
-# Para @Reimarcosneto3 fazer:
+
 def ler_arquivo():
     if CAMINHO_JSON.exists():
-        arquivo = open(CAMINHO_JSON, "r")
-        arquivo1 = arquivo.read()
-        dicionario = loads(arquivo1) #pra facilitar a manipulação de dados dps
-        print(arquivo1)
+        with open(CAMINHO_JSON, "r") as arquivo:
+            dicionario = loads(arquivo.read())
+            return dicionario
     else:
-        print("Arquivo NÃO existe")
-ler_arquivo()
+        return {}
+
