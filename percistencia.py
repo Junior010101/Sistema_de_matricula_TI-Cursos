@@ -19,6 +19,7 @@ clientes = {
             },
         },
         "plano_saude": {
+            "plano": "Diamante",
             "valor": 350.75,
             "data_vencimento": "10-05-2026",
         },
