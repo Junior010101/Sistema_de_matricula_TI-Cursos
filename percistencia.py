@@ -5,10 +5,9 @@ CAMINHO_JSON = Path.cwd() / "dados" / "clientes.json"
 
 
 
-clientes = [
-    {
+clientes = {
+    "12345678900": {
         "titular": True,
-        "cpf": "12345678900",
         "nome": "Jo\u00e3o da Silva",
         "sexo": "masc",
         "email": "joao.silva@example.com",
@@ -26,7 +25,7 @@ clientes = [
             "data_vencimento": "10-05-2026"
         }
     }
-]
+}
 
 
 def salvar_arquivo(novos_dados):
