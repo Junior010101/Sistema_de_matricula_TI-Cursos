@@ -9,7 +9,7 @@ def validar_cpf(cpf):
         if not nums.isdigit() or len(nums) != 11:
             return None, f"O cpf {cpf} possui caracteres inválidos."
 
-        return nums, None
+        return str(nums), None
 
     else:
         return None, f"O formato do cpf: {cpf}, é invalido."

@@ -17,7 +17,18 @@ def cadastrar_cliente():
                 print(mensagem)
                 return
 
+            if cpf in clientes:
+                print("O cliente já está cadastrado!")
+                return
+
+            clientes[cpf] = {
+                "titular": True,
+                "terceiros": {},
+                "plano_saude": {},
+            }
+
             nome = input("Digite seu nome: ")
+            clientes[cpf]["nome"] = nome
 
             sexo = input("Digite seu sexo (1-fem, 2-masc): ")
 
@@ -27,6 +38,7 @@ def cadastrar_cliente():
 
             sexos = {"1": "fem", "2": "masc"}
             sexo = sexos[sexo]
+            clientes[cpf]["sexo"] = sexo
 
             data_nascimento = input(
                 "Digite sua data de nascimento (00-00-0000): ",
@@ -43,9 +55,15 @@ def cadastrar_cliente():
                     "Para fazer o cadastro como titular"
                     + " o cliente deve ter mais de 18 anos."
                 )
+                return
+
+            clientes[cpf]["data_nascimento"] = data_nascimento
 
             email = input("Digite seu e-mail: ")
+            clientes[cpf]["email"] = email
+
             telefone = input("Digite seu numero de telefone: ")
+            clientes[cpf]["telefone"] = telefone
 
             print(
                 "Qual plano deseja cadastrar:"
@@ -69,20 +87,65 @@ def cadastrar_cliente():
                 return
 
             opcao = opcoes[opcao]
+            clientes[cpf]["plano_saude"]["plano"] = opcao
 
             escolha = input("Você possui algum dependente? (S/N): ")
 
             if escolha.upper() == "S":
                 while True:
-                    cpf_dep = input("\nDigite seu CPF (000.000.000-00): ")
+                    cpf_dep = input("\nDigite o CPF dele (000.000.000-00): ")
                     cpf_dep, mensagem = validar_cpf(cpf_dep)
 
                     if cpf_dep is None:
                         print(mensagem)
-                        return
+                        continue
 
-            # valor, data_vencimento =
-            # calcular_mensalidade(sexo, idade, num_dependentes)
+                    clientes[cpf]["terceiros"][cpf_dep] = {}
+
+                    nome_dep = input("Digite o nome dele: ")
+
+                    data_nascimento_dep = input(
+                        "Digite a data de nascimento dele (00-00-0000): "
+                    )
+
+                    data_nascimento_dep, info = validar_data_nascimento(
+                        data_nascimento_dep
+                    )
+
+                    if data_nascimento_dep is None:
+                        print(info)
+                        continue
+
+                    clientes[cpf]["terceiros"][cpf_dep]["nome"] = nome_dep
+
+                    clientes[cpf]["terceiros"][cpf_dep][
+                        "data_nascimento"
+                    ] = data_nascimento_dep
+
+                    escolha = input(
+                        "Você possui algum outro dependente? (S/N): ",
+                    )
+
+                    if escolha.upper() == "S":
+                        continue
+
+                    break
+
+            num_dependentes = len(clientes[cpf]["terceiros"])
+            # valor, data_vencimento = calcular_mensalidade(
+            #   sexo,
+            #   idade,
+            #   num_dependentes,
+            # )
+
+            # valor e data_vencimento decorativos:
+            valor = 350.75 * (num_dependentes * 0.2)
+            data_vencimento = "10-05-2026"
+
+            clientes[cpf]["plano_saude"]["valor"] = valor
+            clientes[cpf]["plano_saude"]["data_vencimento"] = data_vencimento
+
+            salvar_arquivo(clientes)
 
         case "2":
             pass
