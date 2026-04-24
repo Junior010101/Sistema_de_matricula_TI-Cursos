@@ -1,8 +1,7 @@
-from json import dump,loads
+from json import dump, loads
 from pathlib import Path
 
 CAMINHO_JSON = Path.cwd() / "dados" / "clientes.json"
-
 
 
 clientes = {
@@ -16,13 +15,13 @@ clientes = {
         "terceiros": {
             "98765432199": {
                 "nome": "Ana Silva",
-                "data_nascimento": "15-03-2010"
+                "data_nascimento": "15-03-2010",
             },
         },
         "plano_saude": {
             "valor": 350.75,
-            "data_vencimento": "10-05-2026"
-        }
+            "data_vencimento": "10-05-2026",
+        },
     }
 }
 
@@ -42,4 +41,3 @@ def ler_arquivo():
             return dicionario
     else:
         return {}
-
