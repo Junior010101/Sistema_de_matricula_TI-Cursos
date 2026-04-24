@@ -199,9 +199,15 @@ def cadastrar_cliente():
                     continue
 
                 break
+
             num_dependentes = len(clientes[cpf]["terceiros"])
+
+            _, idade = validar_data_nascimento(
+                clientes[cpf]["data_nascimento"],
+            )
+
             # valor, data_vencimento = calcular_mensalidade(
-            #   sexo,
+            #   clientes[cpf]["sexo"],
             #   idade,
             #   num_dependentes,
             # )
