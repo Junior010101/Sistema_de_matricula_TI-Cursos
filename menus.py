@@ -148,7 +148,71 @@ def cadastrar_cliente():
             salvar_arquivo(clientes)
 
         case "2":
-            pass
+            cpf = input("\nDigite seu CPF (000.000.000-00): ")
+            cpf, mensagem = validar_cpf(cpf)
+
+            if cpf is None:
+                print(mensagem)
+                return
+
+            if cpf not in clientes:
+                print("O cliente não está cadastrado!")
+                return
+
+            print("Para cadastrar um novo dependente no seu plano:")
+
+            while True:
+                cpf_dep = input("\nDigite o CPF dele (000.000.000-00): ")
+                cpf_dep, mensagem = validar_cpf(cpf_dep)
+
+                if cpf_dep is None:
+                    print(mensagem)
+                    continue
+
+                clientes[cpf]["terceiros"][cpf_dep] = {}
+
+                nome_dep = input("Digite o nome dele: ")
+
+                data_nascimento_dep = input(
+                    "Digite a data de nascimento dele (00-00-0000): "
+                )
+
+                data_nascimento_dep, info = validar_data_nascimento(
+                    data_nascimento_dep,
+                )
+
+                if data_nascimento_dep is None:
+                    print(info)
+                    continue
+
+                clientes[cpf]["terceiros"][cpf_dep]["nome"] = nome_dep
+
+                clientes[cpf]["terceiros"][cpf_dep][
+                    "data_nascimento"
+                ] = data_nascimento_dep
+
+                escolha = input(
+                    "Você possui algum outro dependente? (S/N): ",
+                )
+
+                if escolha.upper() == "S":
+                    continue
+
+                break
+            num_dependentes = len(clientes[cpf]["terceiros"])
+            # valor, data_vencimento = calcular_mensalidade(
+            #   sexo,
+            #   idade,
+            #   num_dependentes,
+            # )
+
+            valor = 350.75 * (num_dependentes * 0.2)
+            data_vencimento = "10-05-2026"
+
+            clientes[cpf]["plano_saude"]["valor"] = valor
+            clientes[cpf]["plano_saude"]["data_vencimento"] = data_vencimento
+
+            salvar_arquivo(clientes)
 
         case _:
             print("Opção invalida.\n")
