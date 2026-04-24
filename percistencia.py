@@ -1,31 +1,30 @@
-from json import dump, loads
+from json import dump,loads
 from pathlib import Path
 
 CAMINHO_JSON = Path.cwd() / "dados" / "clientes.json"
 
-# Formatação do arquivo Json:
-# clientes = [
-#     {
-#         "titular": True,
-#         "cpf": "12345678900",
-#         "nome": "João da Silva",
-#         "sexo": "masc",
-#         "email": "joao.silva@example.com",
-#         "data_nascimento": "20-05-1995",
-#         "telefone": "(81) 98888-7777",
-#         "terceiros": [
-#             {
-#                 "cpf": "987.654.321-99",
-#                 "nome": "Ana Silva",
-#                 "data_nascimento": "15-03-2010"
-#             }
-#         ],
-#         "plano_saude": {
-#             "valor": 350.75,
-#             "data_vencimento": "10-05-2026"
-#         }
-#     }
-# ]
+
+
+clientes = {
+    "titular": True,
+    "cpf": "12345678900",
+    "nome": "João da Silva",
+    "sexo": "masc",
+    "email": "joao.silva@example.com",
+    "data_nascimento": "20-05-1995",
+    "telefone": "(81) 98888-7777",
+    "terceiros": [
+      {
+        "cpf": "987.654.321-99",
+        "nome": "Ana Silva",
+        "data_nascimento": "15-03-2010"
+      }
+    ],
+    "plano_saude": {
+      "valor": 350.75,
+      "data_vencimento": "10-05-2026"
+    }
+  }
 
 
 def salvar_arquivo(novos_dados):
@@ -43,3 +42,4 @@ def ler_arquivo():
             return dicionario
     else:
         return {}
+
