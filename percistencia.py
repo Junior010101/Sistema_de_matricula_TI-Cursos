@@ -7,7 +7,7 @@ CAMINHO_JSON = Path.cwd() / "dados" / "clientes.json"
 clientes = {
     "12345678900": {
         "titular": True,
-        "nome": "Jo\u00e3o da Silva",
+        "nome": "João da Silva",
         "sexo": "masc",
         "email": "joao.silva@example.com",
         "data_nascimento": "20-05-1995",
