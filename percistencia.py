@@ -1,37 +1,31 @@
-from json import dump
+from json import dump, loads
 from pathlib import Path
 
 CAMINHO_JSON = Path.cwd() / "dados" / "clientes.json"
 
-# Estrutura padronizada do Json:
-# {
-#     "clientes": [
-#         {
-#             "titular": true,
-#             "cpf": "12345678900",
-#             "nome": "João da Silva",
-#             "sexo": "masc",
-#             "email": "joao.silva@example.com",
-#             "data_nascimento": "20-05-1995",
-#             "telefone": "(81) 98888-7777",
-#             "terceiros": [
-#                 "98765432199"
-#             ],
-#             "plano_saude": {
-#                 "tipo": "Diamante",
-#                 "valor": 350.75,
-#                 "data_vencimento": "10-05-2026"
+# Formatação do arquivo Json:
+# clientes = [
+#     {
+#         "titular": True,
+#         "cpf": "12345678900",
+#         "nome": "João da Silva",
+#         "sexo": "masc",
+#         "email": "joao.silva@example.com",
+#         "data_nascimento": "20-05-1995",
+#         "telefone": "(81) 98888-7777",
+#         "terceiros": [
+#             {
+#                 "cpf": "987.654.321-99",
+#                 "nome": "Ana Silva",
+#                 "data_nascimento": "15-03-2010"
 #             }
-#         },
-#         {
-#             "titular": false,
-#             "cpf": "98765432199",
-#             "nome": "Ana Silva",
-#             "sexo": "fem",
-#             "data_nascimento": "15-03-2010"
+#         ],
+#         "plano_saude": {
+#             "valor": 350.75,
+#             "data_vencimento": "10-05-2026"
 #         }
-#     ]
-# }
+#     }
+# ]
 
 
 def salvar_arquivo(novos_dados):
@@ -42,6 +36,10 @@ def salvar_arquivo(novos_dados):
         dump(novos_dados, arquivo, indent=4)
 
 
-# Para @Reimarcosneto3 fazer:
 def ler_arquivo():
-    pass
+    if CAMINHO_JSON.exists():
+        with open(CAMINHO_JSON, "r") as arquivo:
+            dicionario = loads(arquivo.read())
+            return dicionario
+    else:
+        return {}
