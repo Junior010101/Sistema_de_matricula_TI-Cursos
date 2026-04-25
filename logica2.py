@@ -20,11 +20,41 @@ def calculo():
             if dados[chave]["sexo"] == "fem" and (int(idade[2]) > (2026 - int(idade[2])) >= 13) and ((2026 - int(idade[2])) <= 35):
                 dados[chave]["plano_saude"]["valor"] = 400 + (400 * 0.3) 
             if len(dados[chave]["terceiros"]) > 1:
-                dados[chave]["plano_saude"]["valor"] = 800 - (800 * 0.2) 
+                dados[chave]["plano_saude"]["valor"] = 400 - (400 * 0.2) 
             if (2026 - int(idade[2])) < 13:
                 dados[chave]["plano_saude"]["valor"] = 400 - (400 * 0.3) 
             if (2026 - int(idade[2])) >= 60:
                 dados[chave]["plano_saude"]["valor"] = 400 - (400 * 0.4) 
                 
+        elif dados[chave]["plano_saude"]["plano"] == "Ouro":
+            if dados[chave]["sexo"] == "fem" and (int(idade[2]) > (2026 - int(idade[2])) >= 13) and ((2026 - int(idade[2])) <= 35):
+                dados[chave]["plano_saude"]["valor"] = 300 + (300 * 0.3) 
+            if len(dados[chave]["terceiros"]) > 1:
+                dados[chave]["plano_saude"]["valor"] = 300 - (300 * 0.2) 
+            if (2026 - int(idade[2])) < 13:
+                dados[chave]["plano_saude"]["valor"] = 300 - (300 * 0.3) 
+            if (2026 - int(idade[2])) >= 60:
+                dados[chave]["plano_saude"]["valor"] = 300 - (300 * 0.4) 
+                
+        elif dados[chave]["plano_saude"]["plano"] == "Prata":
+            if dados[chave]["sexo"] == "fem" and (int(idade[2]) > (2026 - int(idade[2])) >= 13) and ((2026 - int(idade[2])) <= 35):
+                dados[chave]["plano_saude"]["valor"] = 200 + (200 * 0.3) 
+            if len(dados[chave]["terceiros"]) > 1:
+                dados[chave]["plano_saude"]["valor"] = 200 - (200 * 0.2) 
+            if (2026 - int(idade[2])) < 13:
+                dados[chave]["plano_saude"]["valor"] = 200 - (200 * 0.3) 
+            if (2026 - int(idade[2])) >= 60:
+                dados[chave]["plano_saude"]["valor"] = 200 - (200 * 0.4) 
+                
+        elif dados[chave]["plano_saude"]["plano"] == "Esmeralda":
+            if dados[chave]["sexo"] == "fem" and (int(idade[2]) > (2026 - int(idade[2])) >= 13) and ((2026 - int(idade[2])) <= 35):
+                dados[chave]["plano_saude"]["valor"] = 500 + (500 * 0.3) 
+            if len(dados[chave]["terceiros"]) > 1:
+                dados[chave]["plano_saude"]["valor"] = 500 - (500 * 0.2) 
+            if (2026 - int(idade[2])) < 13:
+                dados[chave]["plano_saude"]["valor"] = 500 - (500 * 0.3) 
+            if (2026 - int(idade[2])) >= 60:
+                dados[chave]["plano_saude"]["valor"] = 500 - (500 * 0.4) 
+                                                        
 calculo()
 
