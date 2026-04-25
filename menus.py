@@ -290,3 +290,24 @@ def editar_cliente():
 
     else:
         print("Desculpe, o CPF informado não foi encontrado!")
+
+#Marcos
+def remover():
+    dados = ler_arquivo()
+    esc1 = input("1 - Excluir um cliente\n2 - Excluir um Terceiro de um cliente")
+    if esc1 == "1":
+        cpf = input("Iforme o cpf do cliente que deseja exculir")
+        if cpf in dados:
+            del dados[cpf]
+        else: 
+            print("vc digitou um cpf inexistente ")
+    elif esc1 == "2":
+        cpf = input("Iforme o cpf do cliente que deseja exculir o terceiro")
+        cpft = input("Iforme o cpf do terceiro que deseja exculir")
+        if cpf in dados:
+            if cpft in dados[cpf]["terceiros"]:
+                del dados[cpf]["terceiros"][cpft]
+        else: 
+            print("vc digitou um cpf inexistente ")
+    else:
+        print("você digitou algo de errado")
