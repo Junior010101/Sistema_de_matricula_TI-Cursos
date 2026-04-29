@@ -3,13 +3,13 @@ from menus import editar_aluno, listar_por_curso, listar_por_sexo, remover_aluno
 
 def menu():
     while True:
-        print("\nTI Cursos\n")
-        print("1 - Cadastrar Aluno")
-        print("2 - Editar Aluno")
-        print("3 - Remover Aluno")
+        print("\n Planos \n")
+        print("1 - Cadastrar")
+        print("2 - Editar")
+        print("3 - Remover")
         print("4 - Listagem Geral")
-        print("5 - Listagem por Curso")
-        print("6 - Listagem por Sexo")
+        print("5 - Listagem por Plano")
+        print("6 - Buscar pro Cliente(CPF)")
         print("0 - Sair")
 
         opcao = input("Escolha: ")
