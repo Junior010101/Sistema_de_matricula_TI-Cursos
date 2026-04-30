@@ -311,3 +311,68 @@ def remover():
             print("vc digitou um cpf inexistente ")
     else:
         print("você digitou algo de errado")
+
+#Ximenes
+def lps():
+    dados = ler_arquivo()
+    plano = input("Informe o plano de saúde que deseja listar os clientes: \n1 - Diamante\n2 - Ouro\n3 - Prata\n4 - Esmeralda\n")
+    esc = 1 if plano == "1" else 2 if plano == "2" else 3 if plano == "3" else 4 if plano == "4" else 0
+    if esc == 0:
+        print("você digitou algo de errado")
+        return
+    elif esc == 1:
+        print("Diamante")
+        print("CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data Nasc. ¦ Telefone        ¦ Plano      ¦ Valor      ")
+
+        for chave, item in dados.items():
+            if item["plano_saude"]["plano"] == "Diamante":
+                print(f"{chave:<12} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}")
+
+    elif esc == 2:
+        print("Ouro")
+        print("CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data Nasc. ¦ Telefone        ¦ Plano      ¦ Valor      ")
+        for chave, item in dados.items():
+            if item["plano_saude"]["plano"] == "Ouro":
+                print(f"{chave:<12} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}")
+              
+    elif esc == 3:
+        print("Prata")
+        print("CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data Nasc. ¦ Telefone        ¦ Plano      ¦ Valor      ")
+
+        for chave, item in dados.items():
+            if item["plano_saude"]["plano"] == "Prata":
+                print(f"{chave:<12} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item}{['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}")
+    elif esc == 4:
+        print("Esmeralda")
+        print("CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data Nasc. ¦ Telefone        ¦ Plano      ¦ Valor      ")
+
+        for chave, item in dados.items():
+            if item["plano_saude"]["plano"] == "Esmeralda":
+                print(f"{chave:<12} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}")
+
+def listagem_geral():
+    dados = ler_arquivo()
+    print("CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data Nasc. ¦ Telefone        ¦ Plano      ¦ Valor      ")
+
+    for chave, item in dados.items():
+        if item["plano_saude"]["plano"] == "Diamante":
+            print(f"{chave:<12} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}")
+
+def data_por_vecimento():
+    dados = ler_arquivo()
+    print("CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data venc. ¦ Telefone        ¦ Plano      ¦ Valor      ")
+
+    for chave,item in dados.items():
+        lista = item["plano_saude"]["data_vencimento"].split("-")
+        print(f"{chave:<12} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['plano_saude']["data_vencimento"]:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}") if int(lista[1]) <= 5 else None
+
+def cpf():
+    dados = ler_arquivo()
+    cpf = input("Digite seu CPF: ")
+    print("Nome          ¦ Sexo  ¦ E-mail                 ¦ Data nasc.   ¦ Telefone        ¦ Plano      ¦ Valor       ¦ Data venc.   ")
+
+    for chave,item in dados.items():
+        if chave == cpf:
+            print(f"{item["nome"]:<12} ¦ {item["sexo"]:<5} ¦ {item["email"]:<20} ¦ {item["data_nascimento"]:<12} ¦ {item["telefone"]:<10} ¦ {item["plano_saude"]["plano"]:<10} ¦  {item["plano_saude"]["valor"]:<10} ¦ {item["plano_saude"]["data_vencimento"]}")
+            
+cpf()
