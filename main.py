@@ -1,4 +1,5 @@
-from menus import editar_aluno, listar_por_curso, listar_por_sexo, remover_aluno
+from menus import cadastrar_cliente, editar_cliente, remover, listagem_geral, lps, cpf
+from logica import calculo,vencimento
 
 
 def menu():
@@ -10,21 +11,28 @@ def menu():
         print("4 - Listagem Geral")
         print("5 - Listagem por Plano")
         print("6 - Buscar pro Cliente(CPF)")
+        print("7 - Vencimento")
         print("0 - Sair")
 
         opcao = input("Escolha: ")
 
-        if opcao == "2":
-            editar_aluno()
+        if opcao == "1":
+            cadastrar_cliente()
+            calculo(); vencimento()
+        elif opcao == "2":
+            editar_cliente()
 
         elif opcao == "3":
-            remover_aluno()
+            remover()
+
+        elif opcao == "4":
+            listagem_geral()
 
         elif opcao == "5":
-            listar_por_curso()
+            lps()
 
         elif opcao == "6":
-            listar_por_sexo()
+            cpf()
 
         elif opcao == "0":
             print("Saindo...")

@@ -131,24 +131,10 @@ def cadastrar_cliente():
 
                     break
 
-            num_dependentes = len(clientes[cpf]["terceiros"])
-            # valor, data_vencimento = calcular_mensalidade(
-            #   sexo,
-            #   idade,
-            #   num_dependentes,
-            # )
-
-            # valor e data_vencimento decorativos:
-            valor = 350.75 * (num_dependentes * 0.2)
-            data_vencimento = "10-05-2026"
-
-            clientes[cpf]["plano_saude"]["valor"] = valor
-            clientes[cpf]["plano_saude"]["data_vencimento"] = data_vencimento
-
             salvar_arquivo(clientes)
 
         case "2":
-            cpf = input("\nDigite seu CPF (000.000.000-00): ")
+            cpf = input("\nDigite o CPF do seu titular (000.000.000-00): ")
             cpf, mensagem = validar_cpf(cpf)
 
             if cpf is None:
@@ -206,18 +192,6 @@ def cadastrar_cliente():
                 clientes[cpf]["data_nascimento"],
             )
 
-            # valor, data_vencimento = calcular_mensalidade(
-            #   clientes[cpf]["sexo"],
-            #   idade,
-            #   num_dependentes,
-            # )
-
-            valor = 350.75 * (num_dependentes * 0.2)
-            data_vencimento = "10-05-2026"
-
-            clientes[cpf]["plano_saude"]["valor"] = valor
-            clientes[cpf]["plano_saude"]["data_vencimento"] = data_vencimento
-
             salvar_arquivo(clientes)
 
         case _:
@@ -248,9 +222,6 @@ def editar_cliente():
 
             case "2":
                 editar[cpf]["sexo"] = input("Informe o novo sexo: ")
-                # Lembrete de marcondes para layme: Quando santos fizer o
-                # calcular_mensalidade você deve atualizar o valor e a data de
-                # vencimento dentro de plano_saude
 
             case "3":
                 editar[cpf]["email"] = input("Informe o novo E-mail: ")
@@ -259,9 +230,6 @@ def editar_cliente():
                 editar[cpf]["data_nascimento"] = input(
                     "Informe a nova data de nascimento: "
                 )
-                # Lembrete de marcondes para layme: Quando santos fizer o
-                # calcular_mensalidade você deve atualizar o valor e a data de
-                # vencimento dentro de plano_saude
 
             case "5":
                 editar[cpf]["telefone"] = input("Informe o novo telefone: ")
@@ -296,19 +264,19 @@ def remover():
     dados = ler_arquivo()
     esc1 = input("1 - Excluir um cliente\n2 - Excluir um Terceiro de um cliente")
     if esc1 == "1":
-        cpf = input("Iforme o cpf do cliente que deseja exculir: ")
+        cpf = input("Informe o cpf do cliente que deseja exculir: ")
         if cpf in dados:
             del dados[cpf]
         else: 
             print("vc digitou um cpf inexistente ")
     elif esc1 == "2":
-        cpf = input("Iforme o cpf do cliente que deseja exculir o terceiro: ")
-        cpft = input("Iforme o cpf do terceiro que deseja exculir: ")
+        cpf = input("Informe o cpf do cliente que deseja exculir o terceiro: ")
+        cpft = input("Informe o cpf do terceiro que deseja exculir: ")
         if cpf in dados:
             if cpft in dados[cpf]["terceiros"]:
                 del dados[cpf]["terceiros"][cpft]
         else: 
-            print("vc digitou um cpf inexistente ")
+            print("você digitou um cpf inexistente ")
     else:
         print("você digitou algo de errado")
 
@@ -369,10 +337,14 @@ def data_por_vecimento():
 def cpf():
     dados = ler_arquivo()
     cpf = input("Digite seu CPF: ")
+    cpf, err = validar_cpf(cpf)
+    
+    if cpf is None:
+        print(err)
+        return
+    
     print("Nome          ¦ Sexo  ¦ E-mail                 ¦ Data nasc.   ¦ Telefone        ¦ Plano      ¦ Valor       ¦ Data venc.   ")
 
-    for chave,item in dados.items():
+    for chave, item in dados.items():
         if chave == cpf:
             print(f"{item["nome"]:<12} ¦ {item["sexo"]:<5} ¦ {item["email"]:<20} ¦ {item["data_nascimento"]:<12} ¦ {item["telefone"]:<10} ¦ {item["plano_saude"]["plano"]:<10} ¦  {item["plano_saude"]["valor"]:<10} ¦ {item["plano_saude"]["data_vencimento"]}")
-            
-cpf()

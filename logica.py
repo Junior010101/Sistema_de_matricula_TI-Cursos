@@ -1,6 +1,6 @@
 from calendar import monthrange
 from datetime import datetime
-
+from percistencia import ler_arquivo,salvar_arquivo
 
 def validar_cpf(cpf):
     if len(cpf) == 14 and cpf[3] == "." and cpf[7] == "." and cpf[11] == "-":
@@ -58,12 +58,12 @@ def validar_data_nascimento(data_nascimento):
 
     return data_nascimento, idade
 
-def calculo(dados):
-    
+def calculo():
+    dados = ler_arquivo()
     for chave, item in dados.items():
         idade = dados[chave]["data_nascimento"].split("-")
         if dados[chave]["plano_saude"]["plano"] == "Diamante":
-            if dados[chave]["sexo"] == "fem" and (int(idade[2]) > (2026 - int(idade[2])) >= 13) and ((2026 - int(idade[2])) <= 35):
+            if item["sexo"] == "fem" and (int(idade[2]) > (2026 - int(idade[2])) >= 13) and ((2026 - int(idade[2])) <= 35):
                 dados[chave]["plano_saude"]["valor"] = 400 + (400 * 0.3) 
             if len(dados[chave]["terceiros"]) > 1:
                 dados[chave]["plano_saude"]["valor"] = 400 - (400 * 0.2) 
@@ -101,3 +101,23 @@ def calculo(dados):
                 dados[chave]["plano_saude"]["valor"] = 500 - (500 * 0.3) 
             if (2026 - int(idade[2])) >= 60:
                 dados[chave]["plano_saude"]["valor"] = 500 - (500 * 0.4) 
+        breakpoint()
+        salvar_arquivo(dados)
+
+def vencimento():
+        dados = ler_arquivo()
+        
+        ultimo = list(dados)[-1]
+        
+        data_hoje = datetime.now()
+        dia_atual = data_hoje.day
+        mes_atual = data_hoje.month
+        ano_atual = data_hoje.year
+        
+        if mes_atual < 12:
+            mes_atual+=1
+        elif mes_atual >=12:
+            ano_atual+=1
+            mes_atual = "01"
+        dados[ultimo]["plano_saude"]["data_vencimento"] = f"{dia_atual}-{mes_atual}-{ano_atual}" 
+        salvar_arquivo(dados)
