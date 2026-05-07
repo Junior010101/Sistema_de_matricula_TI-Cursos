@@ -264,17 +264,19 @@ def remover():
     dados = ler_arquivo()
     esc1 = input("1 - Excluir um cliente\n2 - Excluir um Terceiro de um cliente")
     if esc1 == "1":
-        cpf = input("Informe o cpf do cliente que deseja exculir: ")
+        cpf = input("Informe o cpf do cliente que deseja excluir: ")
         if cpf in dados:
             del dados[cpf]
         else: 
             print("vc digitou um cpf inexistente ")
     elif esc1 == "2":
-        cpf = input("Informe o cpf do cliente que deseja exculir o terceiro: ")
-        cpft = input("Informe o cpf do terceiro que deseja exculir: ")
+        cpf = input("Informe o cpf do cliente que deseja excluir o terceiro: ")
         if cpf in dados:
+            cpft = input("Informe o cpf do terceiro que deseja excluir: ")
             if cpft in dados[cpf]["terceiros"]:
                 del dados[cpf]["terceiros"][cpft]
+            else:
+                print("você digitou um cpf inexistente ")
         else: 
             print("você digitou um cpf inexistente ")
     else:
