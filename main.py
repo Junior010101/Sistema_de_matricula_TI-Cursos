@@ -1,5 +1,12 @@
-from menus import cadastrar_cliente, editar_cliente, remover, listagem_geral, lps, cpf, data_por_vecimento
-from logica import calculo,vencimento
+from menus import (
+    cadastrar_cliente,
+    editar_cliente,
+    remover,
+    listagem_geral,
+    lps,
+    cpf,
+    data_por_vecimento,
+)
 
 
 def menu():
@@ -32,7 +39,7 @@ def menu():
 
         elif opcao == "6":
             cpf()
-        
+
         elif opcao == "7":
             data_por_vecimento()
 
@@ -42,10 +49,6 @@ def menu():
 
         else:
             print("Opção ainda não implementada!")
-        
-        #vai funcionar sempre
-        calculo()
-        vencimento()
 
 
 menu()

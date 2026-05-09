@@ -1,4 +1,4 @@
-from logica import validar_cpf, validar_data_nascimento
+from logica import validar_cpf, validar_data_nascimento, calculo, vencimento
 from percistencia import ler_arquivo, salvar_arquivo
 
 
@@ -131,6 +131,9 @@ def cadastrar_cliente():
 
                     break
 
+            calculo(clientes)
+            vencimento(clientes)
+
             salvar_arquivo(clientes)
 
         case "2":
@@ -192,6 +195,9 @@ def cadastrar_cliente():
                 clientes[cpf]["data_nascimento"],
             )
 
+            calculo(clientes)
+            vencimento(clientes)
+
             salvar_arquivo(clientes)
 
         case _:
@@ -222,6 +228,8 @@ def editar_cliente():
 
             case "2":
                 editar[cpf]["sexo"] = input("Informe o novo sexo: ")
+                calculo(editar)
+                vencimento(editar)
 
             case "3":
                 editar[cpf]["email"] = input("Informe o novo E-mail: ")
@@ -230,6 +238,8 @@ def editar_cliente():
                 editar[cpf]["data_nascimento"] = input(
                     "Informe a nova data de nascimento: "
                 )
+                calculo(editar)
+                vencimento(editar)
 
             case "5":
                 editar[cpf]["telefone"] = input("Informe o novo telefone: ")
@@ -254,12 +264,13 @@ def editar_cliente():
                 print("Opção Invalida.\n")
                 return
 
-        return salvar_arquivo(editar)
+        salvar_arquivo(editar)
 
     else:
         print("Desculpe, o CPF informado não foi encontrado!")
 
-#Marcos
+
+# Marcos
 def remover():
     dados = ler_arquivo()
     esc1 = input("1 - Excluir um cliente\n2 - Excluir um Terceiro de um cliente")
@@ -267,7 +278,7 @@ def remover():
         cpf = input("Informe o cpf do cliente que deseja excluir: ")
         if cpf in dados:
             del dados[cpf]
-        else: 
+        else:
             print("vc digitou um cpf inexistente ")
     elif esc1 == "2":
         cpf = input("Informe o cpf do cliente que deseja excluir o terceiro: ")
@@ -277,76 +288,118 @@ def remover():
                 del dados[cpf]["terceiros"][cpft]
             else:
                 print("você digitou um cpf inexistente ")
-        else: 
+        else:
             print("você digitou um cpf inexistente ")
     else:
         print("você digitou algo de errado")
 
-#Ximenes
+
+# Ximenes
 def lps():
     dados = ler_arquivo()
-    plano = input("Informe o plano de saúde que deseja listar os clientes: \n1 - Diamante\n2 - Ouro\n3 - Prata\n4 - Esmeralda\n")
-    esc = 1 if plano == "1" else 2 if plano == "2" else 3 if plano == "3" else 4 if plano == "4" else 0
+    plano = input(
+        "Informe o plano de saúde que deseja listar os clientes: \n1 - Diamante\n2 - Ouro\n3 - Prata\n4 - Esmeralda\n"
+    )
+    esc = (
+        1
+        if plano == "1"
+        else 2 if plano == "2" else 3 if plano == "3" else 4 if plano == "4" else 0
+    )
     if esc == 0:
         print("você digitou algo de errado")
         return
     elif esc == 1:
         print("Diamante")
-        print("CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data Nasc. ¦ Telefone        ¦ Plano      ¦ Valor      ")
+        print(
+            "CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data Nasc. ¦ Telefone        ¦ Plano      ¦ Valor      "
+        )
 
         for chave, item in dados.items():
             if item["plano_saude"]["plano"] == "Diamante":
-                print(f"{chave:<12} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}")
+                print(
+                    f"{chave:<12} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}"
+                )
 
     elif esc == 2:
         print("Ouro")
-        print("CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data Nasc. ¦ Telefone        ¦ Plano      ¦ Valor      ")
+        print(
+            "CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data Nasc. ¦ Telefone        ¦ Plano      ¦ Valor      "
+        )
         for chave, item in dados.items():
             if item["plano_saude"]["plano"] == "Ouro":
-                print(f"{chave:<12} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}")
-              
+                print(
+                    f"{chave:<12} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}"
+                )
+
     elif esc == 3:
         print("Prata")
-        print("CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data Nasc. ¦ Telefone        ¦ Plano      ¦ Valor      ")
+        print(
+            "CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data Nasc. ¦ Telefone        ¦ Plano      ¦ Valor      "
+        )
 
         for chave, item in dados.items():
             if item["plano_saude"]["plano"] == "Prata":
-                print(f"{chave:<12} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item}{['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}")
+                print(
+                    f"{chave:<12} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item}{['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}"
+                )
     elif esc == 4:
         print("Esmeralda")
-        print("CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data Nasc. ¦ Telefone        ¦ Plano      ¦ Valor      ")
+        print(
+            "CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data Nasc. ¦ Telefone        ¦ Plano      ¦ Valor      "
+        )
 
         for chave, item in dados.items():
             if item["plano_saude"]["plano"] == "Esmeralda":
-                print(f"{chave:<12} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}")
+                print(
+                    f"{chave:<12} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}"
+                )
+
 
 def listagem_geral():
     dados = ler_arquivo()
-    print("CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data Nasc. ¦ Telefone        ¦ Plano      ¦ Valor      ")
+    print(
+        "CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data Nasc. ¦ Telefone        ¦ Plano      ¦ Valor      "
+    )
 
     for chave, item in dados.items():
         if item["plano_saude"]["plano"] == "Diamante":
-            print(f"{chave:<12} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}")
+            print(
+                f"{chave:<12} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}"
+            )
+
 
 def data_por_vecimento():
     dados = ler_arquivo()
-    print("CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data venc. ¦ Telefone        ¦ Plano      ¦ Valor      ")
+    print(
+        "CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data venc. ¦ Telefone        ¦ Plano      ¦ Valor      "
+    )
 
-    for chave,item in dados.items():
+    for chave, item in dados.items():
         lista = item["plano_saude"]["data_vencimento"].split("-")
-        print(f"{chave:<12} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['plano_saude']["data_vencimento"]:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}") if int(lista[1]) <= 5 else None
+        (
+            print(
+                f"{chave:<12} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['plano_saude']["data_vencimento"]:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}"
+            )
+            if int(lista[1]) <= 5
+            else None
+        )
+
 
 def cpf():
     dados = ler_arquivo()
     cpf = input("Digite seu CPF: ")
     cpf, err = validar_cpf(cpf)
-    
+
     if cpf is None:
         print(err)
         return
-    
-    print("Nome          ¦ Sexo  ¦ E-mail                 ¦ Data nasc.   ¦ Telefone        ¦ Plano      ¦ Valor       ¦ Data venc.   ")
+
+    print(
+        "Nome          ¦ Sexo  ¦ E-mail                 ¦ Data nasc.   ¦ Telefone        ¦ Plano      ¦ Valor       ¦ Data venc.   "
+    )
 
     for chave, item in dados.items():
         if chave == cpf:
-            print(f"{item["nome"]:<12} ¦ {item["sexo"]:<5} ¦ {item["email"]:<20} ¦ {item["data_nascimento"]:<12} ¦ {item["telefone"]:<10} ¦ {item["plano_saude"]["plano"]:<10} ¦  {item["plano_saude"]["valor"]:<10} ¦ {item["plano_saude"]["data_vencimento"]}")
+            print(
+                f"{item["nome"]:<12} ¦ {item["sexo"]:<5} ¦ {item["email"]:<20} ¦ {item["data_nascimento"]:<12} ¦ {item["telefone"]:<10} ¦ {item["plano_saude"]["plano"]:<10} ¦  {item["plano_saude"]["valor"]:<10} ¦ {item["plano_saude"]["data_vencimento"]}"
+            )
