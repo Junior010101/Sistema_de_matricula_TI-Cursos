@@ -18,7 +18,7 @@ def menu():
         print("4 - Listagem Geral")
         print("5 - Listagem por Plano")
         print("6 - Buscar pro Cliente(CPF)")
-        print("7 - Vencimento")
+        print("7 - listagem por Vencimento")
         print("0 - Sair")
 
         opcao = input("Escolha: ")
