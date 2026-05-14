@@ -292,6 +292,7 @@ def remover():
             print("você digitou um cpf inexistente ")
     else:
         print("você digitou algo de errado")
+    salvar_arquivo(dados)
 
 
 # Ximenes
