@@ -152,7 +152,6 @@ def cadastrar_cliente():
 
                     if escolha.upper() == "S":
                         continue
-
                     break
 
             calculo(clientes)
@@ -234,12 +233,7 @@ def cadastrar_cliente():
 
                 if escolha.upper() == "S":
                     continue
-
                 break
-
-            _, idade = validar_data_nascimento(
-                clientes[cpf]["data_nascimento"],
-            )
 
             calculo(clientes)
             vencimento(clientes)
@@ -297,36 +291,42 @@ def editar_cliente():
                 print("Alteração feita com sucesso!")
 
             case "4":
-                apenasnumeros = input("Informe a nova data de nascimento (dd-mm-aaaa): ")
+                apenasnumeros = input(
+                    "Informe a nova data de nascimento (dd-mm-aaaa): "
+                )
                 if apenasnumeros.isdigit():
                     editar[cpf]["data_nascimento"] = apenasnumeros
                     print("Alteração feita com sucesso!")
                 else:
-                    print("Erro! Caracter Inválido")    
+                    print("Erro! Caracter Inválido")
                 calculo(editar)
                 vencimento(editar)
 
             case "5":
                 apenasnumeros = input("Informe o novo telefone: ")
                 if apenasnumeros.isdigit():
-                    editar[cpf]["telefone"] = apenasnumeros 
+                    editar[cpf]["telefone"] = apenasnumeros
                     print("Alteração feita com sucesso!")
                 else:
                     print("Erro! Caracter Inválido")
             case "6":
-                quero_editar2 = input("Informe o CPF do dependente que você quer editar: ")
-                apenasletras = input(
-                    "Informe o novo nome do dependente: ")
+                quero_editar2 = input(
+                    "Informe o CPF do dependente que você quer editar: "
+                )
+                apenasletras = input("Informe o novo nome do dependente: ")
                 if apenasletras.isalpha():
                     editar[cpf]["terceiros"][quero_editar2]["nome"] = apenasletras
                     print("Alteração feita com sucesso!")
                 else:
-                    print("Erro! Caracter Inválido")    
+                    print("Erro! Caracter Inválido")
 
             case "7":
                 quero_editar2 = input(
-                    "Informe o CPF do dependente que você quer editar: ")
-                apenasnumeros = input("Informe a nova data de nascimento (dd-mm-aaaa): ")
+                    "Informe o CPF do dependente que você quer editar: "
+                )
+                apenasnumeros = input(
+                    "Informe a nova data de nascimento (dd-mm-aaaa): "
+                )
                 data, erro = validar_data_nascimento(apenasnumeros)
                 if data is None:
                     print(erro)
