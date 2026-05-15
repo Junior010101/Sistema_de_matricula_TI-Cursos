@@ -1,10 +1,13 @@
 from calendar import monthrange
 from datetime import datetime
-from os import system
+from os import system, name
 
 
 def limpar():
-    system("cls")
+    if name == "nt":
+        system("cls")
+    else:
+        system("clear")
 
 
 def validar_cpf(cpf):
