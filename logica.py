@@ -65,14 +65,15 @@ def calculo(dados):
         idade = int(idade[2])
         idade_atual = 2026 - idade
 
-        plano = (400 if item["plano_saude"]["plano"] == "Diamante"else (300 if item["plano_saude"]["plano"] == "Ouro"else (200 if item["plano_saude"]["plano"] == "Prata"else 500 if item["plano_saude"]["plano"] == "Esmeralda" else None)))
+        plano = 400 if item["plano_saude"]["plano"] == "Diamante"else (300 if item["plano_saude"]["plano"] == "Ouro"else (200 if item["plano_saude"]["plano"] == "Prata"else 500 if item["plano_saude"]["plano"] == "Esmeralda" else None))
 
         acrec1 = ((plano * 0.3)if item["sexo"] == "fem"and ((idade > idade_atual) >= 13)and (idade_atual <= 35)else 0)
+        acrec2 = 0
 
-        acrec2 = (plano * 0.2) if len(dados[chave]["terceiros"]) > 1 else 0
-        
+        for item in chave["terceiros"]:
+            planod = (400 if item["plano"] == "Diamante"else (300 if item["plano"] == "Ouro"else (200 if item["plano"] == "Prata"else 500 if item["plano"] == "Esmeralda" else None)))
+            acrec2 += (planod * 0.20)
         acrec3 = (plano * 0.3) if idade_atual < 13 else 0
-        
         acrec4 = (plano * 0.4) if idade_atual >= 60 else 0
 
         item["plano_saude"]["valor"] = plano + acrec1 + acrec2 + acrec3 + acrec4

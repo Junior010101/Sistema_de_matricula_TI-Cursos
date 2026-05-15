@@ -359,7 +359,7 @@ def lps():
 def listagem_geral():
     dados = ler_arquivo()
     print(
-        "CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data Nasc. ¦ Telefone        ¦ Plano      ¦ Valor      "
+        f"{"CPF":<12}¦ {"Nome":<12}¦ f{"Sexo":<5}¦ {"E-mail":<20}¦ {"Data Nasc.":<10}¦ {"Telefone":<10}¦ {"Plano":<10}¦ {"Valor":10.2f}"
     )
 
     for chave, item in dados.items():
@@ -372,7 +372,7 @@ def listagem_geral():
 def data_por_vecimento():
     dados = ler_arquivo()
     print(
-        "CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data venc. ¦ Telefone        ¦ Plano      ¦ Valor      "
+        f"{"CPF":<12}¦ {"Nome":<12}¦ f{"Sexo":<5}¦ {"E-mail":<20}¦ {"Data Nasc.":<10}¦ {"Telefone":<10}¦ {"Plano":<10}¦ {"Valor":10.2f}"
     )
 
     for chave, item in dados.items():
@@ -396,7 +396,7 @@ def cpf():
         return
 
     print(
-        "Nome          ¦ Sexo  ¦ E-mail                 ¦ Data nasc.   ¦ Telefone        ¦ Plano      ¦ Valor       ¦ Data venc.   "
+        f"{"CPF":<12}¦ {"Nome":<12}¦ f{"Sexo":<5}¦ {"E-mail":<20}¦ {"Data Nasc.":<10}¦ {"Telefone":<10}¦ {"Plano":<10}¦ {"Valor":10.2f}¦ {"Vencimento"}"
     )
 
     for chave, item in dados.items():
