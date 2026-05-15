@@ -271,29 +271,33 @@ def editar_cliente():
         match quero_editar:
             case "1":
                 editar[cpf]["nome"] = input("Informe o novo nome: ")
-
+                print("Alteração feita com sucesso!")
             case "2":
                 mudarsexo = input("Digite 1- Fem ou 2- Masc: ")
                 if mudarsexo == "1":
                     editar[cpf]["sexo"] = "fem"
+                    print("Alteração feita com sucesso!")
                 elif mudarsexo == "2":
                     editar[cpf]["sexo"] = "masc"
+                    print("Alteração feita com sucesso!")
                 calculo(editar)
                 vencimento(editar)
 
             case "3":
                 editar[cpf]["email"] = input("Informe o novo E-mail: ")
+                print("Alteração feita com sucesso!")
 
             case "4":
                 editar[cpf]["data_nascimento"] = input(
                     "Informe a nova data de nascimento: "
                 )
+                print("Alteração feita com sucesso!")
                 calculo(editar)
                 vencimento(editar)
 
             case "5":
                 editar[cpf]["telefone"] = input("Informe o novo telefone: ")
-
+                print("Alteração feita com sucesso!")
             case "6":
                 quero_editar2 = input(
                     "Informe o CPF do dependente que você quer editar: "
@@ -301,14 +305,16 @@ def editar_cliente():
                 editar[cpf]["terceiros"][quero_editar2]["nome"] = input(
                     "Informe o novo nome do dependente: "
                 )
+                print("Alteração feita com sucesso!")
 
             case "7":
                 quero_editar2 = input(
                     "Informe o CPF do dependente que você quer editar: "
                 )
-                editar[cpf]["terceiros"][quero_editar2]["data_nascimento"] = (
-                    input("Informe a nova data de nascimento: "),
+                editar[cpf]["terceiros"][quero_editar2]["data_nascimento"] = input(
+                    "Informe a nova data de nascimento: "
                 )
+                print("Alteração feita com sucesso!")
 
             case _:
                 print("Opção Invalida.\n")
