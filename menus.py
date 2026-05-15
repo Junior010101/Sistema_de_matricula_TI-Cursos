@@ -122,6 +122,30 @@ def cadastrar_cliente():
                         "data_nascimento"
                     ] = data_nascimento_dep
 
+                    print(
+                        "Qual plano deseja cadastrar:"
+                        + "\n1 - Prata"
+                        + "\n2 - Ouro"
+                        + "\n3 - Diamante"
+                        + "\n4 - Esmeralda"
+                    )
+
+                    opcao = input("Informe o numero: ")
+
+                    opcoes = {
+                        "1": "Prata",
+                        "2": "Ouro",
+                        "3": "Diamante",
+                        "4": "Esmeralda",
+                    }
+
+                    if opcao not in ["1", "2", "3", "4"]:
+                        print("Opção de plano invalida.\n")
+                        return
+
+                    opcao = opcoes[opcao]
+                    clientes[cpf]["terceiros"][cpf_dep]["plano"] = opcao
+
                     escolha = input(
                         "Você possui algum outro dependente? (S/N): ",
                     )
@@ -212,8 +236,6 @@ def cadastrar_cliente():
                     continue
 
                 break
-
-            num_dependentes = len(clientes[cpf]["terceiros"])
 
             _, idade = validar_data_nascimento(
                 clientes[cpf]["data_nascimento"],
