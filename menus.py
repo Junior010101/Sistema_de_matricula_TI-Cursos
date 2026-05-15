@@ -180,30 +180,6 @@ def cadastrar_cliente():
                     "data_nascimento"
                 ] = data_nascimento_dep
 
-                print(
-                    "Qual plano deseja cadastrar:"
-                    + "\n1 - Prata"
-                    + "\n2 - Ouro"
-                    + "\n3 - Diamante"
-                    + "\n4 - Esmeralda"
-                )
-
-                opcao = input("Informe o numero: ")
-
-                opcoes = {
-                    "1": "Prata",
-                    "2": "Ouro",
-                    "3": "Diamante",
-                    "4": "Esmeralda",
-                }
-
-                if opcao not in ["1", "2", "3", "4"]:
-                    print("Opção de plano invalida.\n")
-                    return
-
-                opcao = opcoes[opcao]
-                clientes[cpf]["terceiros"][cpf_dep]["plano"] = opcao
-
                 escolha = input(
                     "Você possui algum outro dependente? (S/N): ",
                 )
@@ -251,7 +227,11 @@ def editar_cliente():
                 editar[cpf]["nome"] = input("Informe o novo nome: ")
 
             case "2":
-                editar[cpf]["sexo"] = input("Informe o novo sexo: ")
+                mudarsexo = input("Digite 1- Fem ou 2- Masc: ")
+                if mudarsexo == "1":
+                    editar[cpf]["sexo"] = "fem"
+                elif mudarsexo == "2":
+                    editar[cpf]["sexo"] = "masc"   
                 calculo(editar)
                 vencimento(editar)
 
@@ -383,7 +363,7 @@ def lps():
 def listagem_geral():
     dados = ler_arquivo()
     print(
-        f"{"CPF":<12}¦ {"Nome":<12}¦ f{"Sexo":<5}¦ {"E-mail":<20}¦ {"Data Nasc.":<10}¦ {"Telefone":<10}¦ {"Plano":<10}¦ {"Valor":10.2f}"
+        "CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data Nasc. ¦ Telefone        ¦ Plano      ¦ Valor      "
     )
 
     for chave, item in dados.items():
@@ -396,7 +376,7 @@ def listagem_geral():
 def data_por_vecimento():
     dados = ler_arquivo()
     print(
-        f"{"CPF":<12}¦ {"Nome":<12}¦ f{"Sexo":<5}¦ {"E-mail":<20}¦ {"Data Nasc.":<10}¦ {"Telefone":<10}¦ {"Plano":<10}¦ {"Valor":10.2f}"
+        "CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data venc. ¦ Telefone        ¦ Plano      ¦ Valor      "
     )
 
     for chave, item in dados.items():
@@ -420,7 +400,7 @@ def cpf():
         return
 
     print(
-        f"{"CPF":<12}¦ {"Nome":<12}¦ f{"Sexo":<5}¦ {"E-mail":<20}¦ {"Data Nasc.":<10}¦ {"Telefone":<10}¦ {"Plano":<10}¦ {"Valor":10.2f}¦ {"Vencimento"}"
+        "Nome          ¦ Sexo  ¦ E-mail                 ¦ Data nasc.   ¦ Telefone        ¦ Plano      ¦ Valor       ¦ Data venc.   "
     )
 
     for chave, item in dados.items():
