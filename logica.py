@@ -63,6 +63,13 @@ def validar_data_nascimento(data_nascimento):
 
     if (mes_atual < mes) or (mes_atual == mes and dia_atual < dia):
         idade -= 1
+        
+    if ano < 1900:
+        return (
+            None,
+            f"A data {data_nascimento} é inválida. "
+             + "Imortais não precisam de plano de saúde.",
+        )
 
     return data_nascimento, idade
 
