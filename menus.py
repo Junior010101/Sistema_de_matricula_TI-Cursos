@@ -372,29 +372,20 @@ def remover():
 # Ximenes
 def lps():
     dados = ler_arquivo()
-    plano = input(
-        "Informe o plano de saúde que deseja listar os clientes: \n1 - Diamante\n2 - Ouro\n3 - Prata\n4 - Esmeralda\n"
-    )
-    esc = (
-        1
-        if plano == "1"
-        else 2 if plano == "2" else 3 if plano == "3" else 4 if plano == "4" else 0
-    )
+    plano = input("Informe o plano de saúde que deseja listar os clientes: \n1 - Diamante\n2 - Ouro\n3 - Prata\n4 - Esmeralda\n")
+    esc = (1 if plano == "1" else 2 if plano == "2" else 3 if plano == "3" else 4 if plano == "4" else 0)
+
     if esc == 0:
         print("você digitou algo de errado")
         return
+
     elif esc == 1:
         print("Diamante")
-        print(
-            "CPF          ¦ Nome          ¦ Sexo  ¦ E-mail                 ¦ Data Nasc. ¦ Telefone        ¦ Plano      ¦ Valor      "
-        )
+        print(f"{"CPF":<12}¦ {"Nome":<12}¦ {"Sexo":<5}¦ {"E-mail":<20}¦ {"Data Nasc.":<10}¦ {"Telefone":<10}¦ {"Plano":<10}¦ {"Valor":<10}\n-------------------------------------------------------------------------")
 
         for chave, item in dados.items():
             if item["plano_saude"]["plano"] == "Diamante":
-                print(
-                    f"{chave:<12} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}"
-                )
-
+                print(f"{chave:<12}¦ {item['nome']:<12}¦ {item['sexo']:<5}¦ {item['email']:<20}¦ {item['data_nascimento']:<10}¦ {item['telefone']:<10}¦ {item['plano_saude']['plano']:<10}¦ {item['plano_saude']['valor']:<10.2f}")
     elif esc == 2:
         print("Ouro")
         print(
@@ -405,7 +396,6 @@ def lps():
                 print(
                     f"{chave:<12} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}"
                 )
-
     elif esc == 3:
         print("Prata")
         print(
