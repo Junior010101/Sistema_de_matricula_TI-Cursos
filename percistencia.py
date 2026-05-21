@@ -1,3 +1,4 @@
+from encodings import utf_8
 from json import dump, loads
 from pathlib import Path
 
@@ -14,6 +15,9 @@ def ler_arquivo():
     if CAMINHO_JSON.exists():
         with open(CAMINHO_JSON, "r") as arquivo:
             dicionario = loads(arquivo.read())
-            return dicionario
+            if dicionario != "":
+                return dicionario
+            else:
+                return {}
     else:
         return {}
