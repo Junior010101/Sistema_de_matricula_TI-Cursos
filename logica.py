@@ -130,7 +130,6 @@ def vencimento(dados):
     dia_atual = data_hoje.day
     mes_atual = data_hoje.month
     ano_atual = data_hoje.year
-
     if mes_atual < 12:
         mes_atual += 1
     elif mes_atual >= 12:
