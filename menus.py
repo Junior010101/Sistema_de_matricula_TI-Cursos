@@ -401,7 +401,7 @@ def lps():
         for chave, item in dados.items():
             if item["plano_saude"]["plano"] == "Prata":
                 print(
-                    f"{chave:<14} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item}{['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}"
+                    f"{chave:<14} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}"
                 )
     elif esc == 4:
         print("Esmeralda")
