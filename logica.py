@@ -71,13 +71,16 @@ def validar_data_nascimento(data_nascimento):
              + "Imortais não precisam de plano de saúde.",
         )
 
-    return data_nascimento, idade
+    dia_mes_ano = data_nascimento.split("-")
+    data_tratada = dia_mes_ano[2] + dia_mes_ano[1] + dia_mes_ano[0]
+
+    return int(data_tratada), idade
 
 
 def calculo(dados):
     for _, items in dados.items():
-        idade = items["data_nascimento"].split("-")
-        idade = int(idade[2])
+        idade_string = str(items["data_nascimento"])
+        idade = int(idade_string[0:4])
         idade_atual = 2026 - idade
 
         plano = (
@@ -140,4 +143,4 @@ def vencimento(dados):
     for _, item in dados.items():
         item["plano_saude"][
             "data_vencimento"
-        ] = f"{dia_atual:02d}-{mes_atual:02d}-{ano_atual}"
+        ] = int(f"{ano_atual}{mes_atual:02d}{dia_atual:02d}")
