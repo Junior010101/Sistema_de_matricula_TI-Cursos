@@ -469,6 +469,9 @@ def lps():
 def listagem_geral():
     dados = ler_arquivo()
 
+    if not dados: 
+        print("Tem nada aqui não")
+        return
     print(f"{"CPF":<15}¦ {"Nome":<21}¦ {"Sexo":<6}¦ {"E-mail":<21}¦ {"Data Nasc.":<11}¦ {"Telefone":<11}¦ {"Plano":<11}¦ {"Valor":<11}")
     print("-" * 116)
 
@@ -481,6 +484,9 @@ def listagem_geral():
 def data_por_vecimento():
     dados = ler_arquivo()
 
+    if not dados: 
+        print("Tem nada aqui não")
+        return
     dados = dict(sorted(dados.items(), key= lambda x: x[1]["plano_saude"]["data_vencimento"]))
 
     print(f"{"CPF":<17}¦ {"Nome":<21}¦ {"Sexo":<6}¦ {"E-mail":<21}¦ {"Data venc.":<11}¦ {"Telefone":<11}¦ {"Plano":<11}¦ {"Valor":<11}")
@@ -498,7 +504,9 @@ def cpf():
     dados = ler_arquivo()
     cpf = input("Digite seu CPF: ")
     cpf, err = validar_cpf(cpf)
-
+    if not dados: 
+        print("Tem nada aqui não")
+        return
     if cpf is None:
         print(err)
         return
