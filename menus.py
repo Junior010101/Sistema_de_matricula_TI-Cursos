@@ -381,7 +381,7 @@ def lps():
 
     elif esc == 1:
         print("Diamante")
-        print(f"{"CPF":<14}¦ {"Nome":<12}¦ {"Sexo":<5}¦ {"E-mail":<20}¦ {"Data Nasc.":<10}¦ {"Telefone":<10}¦ {"Plano":<10}¦ {"Valor":<10}\n-------------------------------------------------------------------------")
+        print(f"{"CPF":<14}¦ {"Nome":<12}¦ {"Sexo":<5}¦ {"E-mail":<20}¦ {"Data Nasc.":<10}¦ {"Telefone":<10}¦ {"Plano":<10}¦ {"Valor":<10}\n-----------------------------------------------------------------------------------------------------")
 
         for chave, item in dados.items():
             if item["plano_saude"]["plano"] == "Diamante":

@@ -11,15 +11,14 @@ from menus import (
 
 def menu():
     while True:
-        print("\n Planos \n")
-        print("1 - Cadastrar")
-        print("2 - Editar")
-        print("3 - Remover")
-        print("4 - Listagem Geral")
-        print("5 - Listagem por Plano")
-        print("6 - Buscar pro Cliente(CPF)")
-        print("7 - listagem por Vencimento")
-        print("0 - Sair")
+        print("=" * 92)
+        print(f"|{'Planos':^90}|")
+        print("=" * 92)
+        print(f"|{'1 - Cadastrar':^45}|{'5 - Listagem por Plano':^44}|")
+        print(f"|{'2 - Editar':^45}|{'6 - Buscar por Cliente(CPF)':^44}|")
+        print(f"|{'3 - Remover':^45}|{'7 - Listagem por Vencimento':^44}|")
+        print(f"|{'4 - Listagem Geral':^45}|{'0 - Sair':^44}|")
+        print("=" * 92)
 
         opcao = input("Escolha: ")
         if opcao == "1":
