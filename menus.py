@@ -268,7 +268,7 @@ def editar_cliente():
         match quero_editar:
             case "1":
                 apenasletras = input("Informe o novo nome: ")
-                if apenasletras.isalpha():
+                if apenasletras.replace(" ", "").isalpha():
                     editar[cpf]["nome"] = apenasletras
                     print("Alteração feita com sucesso!")
                 else:
@@ -397,11 +397,8 @@ def lps():
         "\n3 - Prata"
         "\n4 - Esmeralda\n"
     )
-    esc = (
-        1
-        if plano == "1"
-        else (2 if plano == "2" else 3 if plano == "3" else 4 if plano == "4" else 0)
-    )
+    esc = (1 if plano == "1"else (2 if plano == "2" else 3 if plano == "3" else 4 if plano == "4" else 0))
+
     if esc == 0:
         print("você digitou algo de errado")
         return
