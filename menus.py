@@ -1,4 +1,4 @@
-from logica import validar_cpf, validar_data_nascimento, calculo, vencimento
+from logica import calculo, validar_cpf, validar_data_nascimento, vencimento
 from percistencia import ler_arquivo, salvar_arquivo
 
 
@@ -372,85 +372,293 @@ def remover():
 # Ximenes
 def lps():
     dados = ler_arquivo()
-    plano = input("Informe o plano de saúde que deseja listar os clientes: \n1 - Diamante\n2 - Ouro\n3 - Prata\n4 - Esmeralda\n")
-    esc = (1 if plano == "1" else 2 if plano == "2" else 3 if plano == "3" else 4 if plano == "4" else 0)
-
+    plano = input(
+        "Informe o plano de saúde que deseja listar os clientes: "
+        "\n1 - Diamante"
+        "\n2 - Ouro"
+        "\n3 - Prata"
+        "\n4 - Esmeralda\n"
+    )
+    esc = (
+        1
+        if plano == "1"
+        else (2 if plano == "2" else 3 if plano == "3" else 4 if plano == "4" else 0)
+    )
     if esc == 0:
         print("você digitou algo de errado")
         return
 
     elif esc == 1:
+        count = 0
+
+        for _, item in dados.items():
+            if item["plano_saude"]["plano"] == "Diamante":
+                count += 1
+
+        if count == 0:
+            print("Não tem nenhum cliente com esse plano meu manito!!!")
+            return
+
         print("Diamante")
-        print(f"{"CPF":<14}¦ {"Nome":<12}¦ {"Sexo":<5}¦ {"E-mail":<20}¦ {"Data Nasc.":<10}¦ {"Telefone":<10}¦ {"Plano":<10}¦ {"Valor":<10}\n-----------------------------------------------------------------------------------------------------")
+        print(
+            f"{"CPF":<14}¦ "
+            + f"{"Nome":<20}¦ "
+            + f"{"Sexo":<6}¦ "
+            + f"{"E-mail":<20}¦ "
+            + f"{"Data Nasc.":<11}¦ "
+            + f"{"Telefone":<10}¦ "
+            + f"{"Plano":<10}¦ "
+            + f"{"Valor":<10}"
+        )
+        print("-" * 111)
 
         for chave, item in dados.items():
+            data_n = str(item["data_nascimento"])
+
             if item["plano_saude"]["plano"] == "Diamante":
-                print(f"{chave:<14}¦ {item['nome']:<12}¦ {item['sexo']:<5}¦ {item['email']:<20}¦ {item['data_nascimento']:<10}¦ {item['telefone']:<10}¦ {item['plano_saude']['plano']:<10}¦ {item['plano_saude']['valor']:<10.2f}")
+                print(
+                    f"{chave:<14}¦ "
+                    + f"{item['nome']:<20}¦ "
+                    + f"{item['sexo']:<6}¦ "
+                    + f"{item['email']:<20}¦ "
+                    + f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]:<11}¦ "
+                    + f"{item['telefone']:<10}¦ "
+                    + f"{item['plano_saude']['plano']:<10}¦ "
+                    + f"{item['plano_saude']['valor']:<10.2f}"
+                )
+
     elif esc == 2:
+        count = 0
+
+        for _, item in dados.items():
+            if item["plano_saude"]["plano"] == "Ouro":
+                count += 1
+
+        if count == 0:
+            print("Não tem nenhum cliente com esse plano meu manito!!!")
+            return
+
         print("Ouro")
-        print(f"{"CPF":<14}¦ {"Nome":<12}¦ {"Sexo":<5}¦ {"E-mail":<20}¦ {"Data Nasc.":<10}¦ {"Telefone":<10}¦ {"Plano":<10}¦ {"Valor":<10}\n-------------------------------------------------------------------------")
+        print(
+            f"{"CPF":<14}¦ "
+            + f"{"Nome":<20}¦ "
+            + f"{"Sexo":<6}¦ "
+            + f"{"E-mail":<20}¦ "
+            + f"{"Data Nasc.":<11}¦ "
+            + f"{"Telefone":<10}¦ "
+            + f"{"Plano":<10}¦ "
+            + f"{"Valor":<10}"
+        )
+        print("-" * 116)
+
         for chave, item in dados.items():
+            data_n = str(item["data_nascimento"])
+
             if item["plano_saude"]["plano"] == "Ouro":
                 print(
-                    f"{chave:<14} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}"
+                    f"{chave:<14}¦ "
+                    + f"{item['nome']:<20}¦ "
+                    + f"{item['sexo']:<6}¦ "
+                    + f"{item['email']:<20}¦ "
+                    + f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]:<11}¦ "
+                    + f"{item['telefone']:<10}¦ "
+                    + f"{item['plano_saude']['plano']:<10}¦ "
+                    + f"{item['plano_saude']['valor']:<10.2f}"
                 )
+
     elif esc == 3:
+        count = 0
+
+        for _, item in dados.items():
+            if item["plano_saude"]["plano"] == "Prata":
+                count += 1
+
+        if count == 0:
+            print("Não tem nenhum cliente com esse plano meu manito!!!")
+            return
+
         print("Prata")
-        print(f"{"CPF":<14}¦ {"Nome":<12}¦ {"Sexo":<5}¦ {"E-mail":<20}¦ {"Data Nasc.":<10}¦ {"Telefone":<10}¦ {"Plano":<10}¦ {"Valor":<10}\n-------------------------------------------------------------------------")
+        print(
+            f"{"CPF":<14}¦ "
+            + f"{"Nome":<20}¦ "
+            + f"{"Sexo":<6}¦ "
+            + f"{"E-mail":<20}¦ "
+            + f"{"Data Nasc.":<11}¦ "
+            + f"{"Telefone":<10}¦ "
+            + f"{"Plano":<10}¦ "
+            + f"{"Valor":<10}"
+        )
+        print("-" * 111)
 
         for chave, item in dados.items():
+            data_n = str(item["data_nascimento"])
+
             if item["plano_saude"]["plano"] == "Prata":
                 print(
-                    f"{chave:<14} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item}{['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}"
+                    f"{chave:<14}¦ "
+                    + f"{item['nome']:<20}¦ "
+                    + f"{item['sexo']:<6}¦ "
+                    + f"{item['email']:<20}¦ "
+                    + f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]:<11}¦ "
+                    + f"{item['telefone']:<10}¦ "
+                    + f"{item['plano_saude']['plano']:<10}¦ "
+                    + f"{item['plano_saude']['valor']:<10.2f}"
                 )
+
     elif esc == 4:
+        count = 0
+
+        for _, item in dados.items():
+            if item["plano_saude"]["plano"] == "Esmeralda":
+                count += 1
+
+        if count == 0:
+            print("Não tem nenhum cliente com esse plano meu manito!!!")
+            return
+
         print("Esmeralda")
-        print(f"{"CPF":<14}¦ {"Nome":<12}¦ {"Sexo":<5}¦ {"E-mail":<20}¦ {"Data Nasc.":<10}¦ {"Telefone":<10}¦ {"Plano":<10}¦ {"Valor":<10}\n-------------------------------------------------------------------------")
+        print(
+            f"{"CPF":<14}¦ "
+            + f"{"Nome":<20}¦ "
+            + f"{"Sexo":<6}¦ "
+            + f"{"E-mail":<20}¦ "
+            + f"{"Data Nasc.":<11}¦ "
+            + f"{"Telefone":<10}¦ "
+            + f"{"Plano":<10}¦ "
+            + f"{"Valor":<10}"
+        )
+        print("-" * 111)
 
         for chave, item in dados.items():
+            data_n = str(item["data_nascimento"])
+
             if item["plano_saude"]["plano"] == "Esmeralda":
                 print(
-                    f"{chave:<14} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}"
+                    f"{chave:<14}¦ "
+                    + f"{item['nome']:<20}¦ "
+                    + f"{item['sexo']:<6}¦ "
+                    + f"{item['email']:<20}¦ "
+                    + f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]:<11}¦ "
+                    + f"{item['telefone']:<10}¦ "
+                    + f"{item['plano_saude']['plano']:<10}¦ "
+                    + f"{item['plano_saude']['valor']:<10.2f}"
                 )
 
 
 def listagem_geral():
     dados = ler_arquivo()
-    print(f"{"CPF":<14}¦ {"Nome":<12}¦ {"Sexo":<5}¦ {"E-mail":<20}¦ {"Data Nasc.":<10}¦ {"Telefone":<10}¦ {"Plano":<10}¦ {"Valor":<10}\n-------------------------------------------------------------------------")
+
+    if not dados:
+        print("Tem nada aqui não")
+        return
+
+    print(
+        f"{"CPF":<15}¦ "
+        + f"{"Nome":<21}¦ "
+        + f"{"Sexo":<6}¦ "
+        + f"{"E-mail":<21}¦ "
+        + f"{"Data Nasc.":<11}¦ "
+        + f"{"Telefone":<11}¦ "
+        + f"{"Plano":<11}¦ "
+        + f"{"Valor":<11}"
+    )
+    print("-" * 116)
 
     for chave, item in dados.items():
+        data_n = str(item["data_nascimento"])
+
         if item["plano_saude"]["plano"] == "Diamante":
             print(
-                f"{chave:<14} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}"
+                f"{chave:<14} ¦ "
+                + f"{item['nome']:<20} ¦ "
+                + f"{item['sexo']:<5} ¦ "
+                + f"{item['email']:<20} ¦ "
+                + f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]} ¦ "
+                + f"{item['telefone']:<10} ¦ "
+                + f"{item['plano_saude']['plano']:<10} ¦ "
+                + f"{item['plano_saude']['valor']:<10.2f}"
             )
 
 
 def data_por_vecimento():
     dados = ler_arquivo()
-    print(f"{"CPF":<14}¦ {"Nome":<12}¦ {"Sexo":<5}¦ {"E-mail":<20}¦ {"Data venc.":<10}¦ {"Telefone":<10}¦ {"Plano":<10}¦ {"Valor":<10}\n-------------------------------------------------------------------------")
+
+    if not dados:
+        print("Tem nada aqui não")
+        return
+
+    dados = dict(
+        sorted(
+            dados.items(),
+            key=lambda x: x[1]["plano_saude"]["data_vencimento"],
+        )
+    )
+
+    print(
+        f"{"CPF":<17}¦ "
+        + f"{"Nome":<21}¦ "
+        + f"{"Sexo":<6}¦ "
+        + f"{"E-mail":<21}¦ "
+        + f"{"Data venc.":<11}¦ "
+        + f"{"Telefone":<11}¦ "
+        + f"{"Plano":<11}¦"
+        + f"{"Valor":<11}"
+    )
+    print("-" * 116)
 
     for chave, item in dados.items():
-        lista = item["plano_saude"]["data_vencimento"].split("-")
-        (
-            print(f"{chave:<14} ¦ {item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['plano_saude']["data_vencimento"]:<10} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦ {item['plano_saude']['valor']:<10.2f}")
-            if int(lista[1]) <= 5
-            else None
+        data_v = str(item["plano_saude"]["data_vencimento"])
+
+        print(
+            f"{chave:<16} ¦ "
+            + f"{item['nome']:<20} ¦ "
+            + f"{item['sexo']:<5} ¦ "
+            + f"{item['email']:<20} ¦ "
+            + f"{data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]:<10} ¦ "
+            + f"{item['telefone']:<10} ¦ "
+            + f"{item['plano_saude']['plano']:<10} ¦ "
+            + f"{item['plano_saude']['valor']:<10.2f}"
         )
 
 
 def cpf():
     dados = ler_arquivo()
-    cpf = input("Digite seu CPF: ")
+
+    if not dados:
+        print("Tem nada aqui não")
+        return
+
+    cpf = input("Digite seu CPF (000.000.000-00): ")
     cpf, err = validar_cpf(cpf)
 
     if cpf is None:
         print(err)
         return
 
-    print(f"{"Nome":<12}¦ {"Sexo":<5}¦ {"E-mail":<20}¦ {"Data nasc.":<12}¦ {"Telefone":<10}¦ {"Plano":<10}¦ {"Valor":<10}¦ {"Data venc.":<10}\n-------------------------------------------------------------------------")
+    print(
+        f"{"Nome":<21}¦ "
+        + f"{"Sexo":<6}¦ "
+        + f"{"E-mail":<21}¦ "
+        + f"{"Data nasc.":<13}¦ "
+        + f"{"Telefone":<11}¦ "
+        + f"{"Plano":<11}¦ "
+        + f"{"Valor":<11}¦ "
+        + f"{"Data venc.":<11}"
+    )
+    print("-" * 116)
 
     for chave, item in dados.items():
+        data_v = str(item["plano_saude"]["data_vencimento"])
+        data_n = str(item["data_nascimento"])
+
         if chave == cpf:
             print(
-                f"{item['nome']:<12} ¦ {item['sexo']:<5} ¦ {item['email']:<20} ¦ {item['data_nascimento']:<12} ¦ {item['telefone']:<10} ¦ {item['plano_saude']['plano']:<10} ¦  {item['plano_saude']['valor']:<10} ¦ {item['plano_saude']['data_vencimento']}"
+                f"{item['nome']:<20} ¦ "
+                + f"{item['sexo']:<5} ¦ "
+                + f"{item['email']:<20} ¦ "
+                + f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]} ¦ "
+                + f"{item['telefone']:<10} ¦ "
+                + f"{item['plano_saude']['plano']:<10} ¦  "
+                + f"{item['plano_saude']['valor']:<10} ¦ "
+                + f"{data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]:<10}"
             )
