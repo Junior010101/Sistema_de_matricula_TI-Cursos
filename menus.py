@@ -343,29 +343,47 @@ def editar_cliente():
     else:
         print("Desculpe, o CPF informado não foi encontrado!")
 
-
-# Marcos
+#        lista[0]+ lista[1]+ list[0] + list [1]
+# Marcos 100.000.000-00
 def remover():
     dados = ler_arquivo()
-    esc1 = input("1 - Excluir um cliente\n2 - Excluir um Terceiro de um cliente")
-    if esc1 == "1":
-        cpf = input("Informe o cpf do cliente que deseja excluir: ")
-        if cpf in dados:
-            del dados[cpf]
-        else:
-            print("vc digitou um cpf inexistente ")
-    elif esc1 == "2":
-        cpf = input("Informe o cpf do cliente que deseja excluir o terceiro: ")
-        if cpf in dados:
-            cpft = input("Informe o cpf do terceiro que deseja excluir: ")
-            if cpft in dados[cpf]["terceiros"]:
-                del dados[cpf]["terceiros"][cpft]
+    while True:
+        esc1 = input("1 - Excluir um Cliente\n2 - Excluir um Dependente\nResposta: ")
+        if esc1 == "1":
+            cpf = input("Informe o cpf do Cliente que deseja excluir: ")
+            if "." in list(cpf) and "-" in list(cpf):
+                a = cpf.split(".");b = a[2].split("-");cpf = a[0]+a[1]+b[0]+b[1]
+            else:
+                print("use o formato 000.000.000-00")
+            if cpf in dados:
+                del dados[cpf]
+                print("Cliente excluido com sucesso!")
+                break
+            else:
+                print("vc digitou um cpf inexistente ")
+        elif esc1 == "2":
+            cpf = input("Informe o cpf do cliente que deseja excluir o Dependente: ")
+            if "." in list(cpf) and "-" in list(cpf):
+                a = cpf.split(".");b = a[2].split("-");cpf = a[0]+a[1]+b[0]+b[1]
+            else:
+                print("use o formato 000.000.000-00")
+            if cpf in dados:
+                cpft = input("Informe o cpf do Dependente que deseja excluir: ")
+                
+                if "." in list(cpft) and "-" in list(cpft):
+                    a = cpft.split(".");b = a[2].split("-");cpft = a[0]+a[1]+b[0]+b[1]
+                else:
+                    print("use o formato 000.000.000-00")
+                if cpft in dados[cpf]["terceiros"]:
+                    del dados[cpf]["terceiros"][cpft]
+                    print("Dependente excluido com sucesso!")
+                    break
+                else:
+                    print("você digitou um cpf inexistente ")
             else:
                 print("você digitou um cpf inexistente ")
         else:
-            print("você digitou um cpf inexistente ")
-    else:
-        print("você digitou algo de errado")
+            print("você digitou algo de errado")
     salvar_arquivo(dados)
 
 

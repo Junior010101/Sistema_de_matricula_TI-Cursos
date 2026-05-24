@@ -21,20 +21,16 @@ def limpar_tela():
 def menu():
     while True:
 
-        print(" " + "=" * 100)
-        print(f"\n{"Planos":^100}\n")
-        print("=" * 100)
+        print("=" * 80)
+        print(f"\n{"Planos":^80}\n")
+        print("=" * 80)
         print(
-            f"\n{"1 - Cadastrar":^50}¦"
-            + f"{"2 - Editar":^49}\n"
-            + f"{"3 - Remover":^50}¦"
-            + f"{"4 - Listagem Geral":^49}\n"
-            + f"{"5 - Listagem por Plano":^50}¦"
-            + f"{"6 - Buscar pro Cliente(CPF)":^49}\n"
-            + f"{"7 - listagem por Vencimento":^50}¦"
-            + f"{"0 - Sair":^49}\n",
+            f"\n{"1 - Cadastrar":^40}¦{"5 - Listagem por Plano":^39}\n"
+            + f"{"2 - Editar":^40}¦{"6 - Buscar pro Cliente(CPF)":^39}\n"
+            + f"{"3 - Remover":^40}¦{"7 - listagem por Vencimento":^39}\n"
+            + f"{"4 - Listagem Geral":^40}¦{"0 - Sair":^39}\n"
         )
-        print("=" * 100)
+        print("=" * 80)
 
         opcao = input("Escolha: ")
         if opcao == "1":
