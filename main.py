@@ -26,12 +26,15 @@ def menu():
     BARRA = AMARELO + "║" + BRANCO
 
     TITULO = f"""
+{AMARELO}░▒▓{CIANO}                                                                 ▄▀
 {AMARELO}░▒▓{CIANO}  █████▄ ▄▄     ▄▄▄  ▄▄  ▄▄  ▄▄▄    ▄▄▄▄  ▄▄▄▄▄   ▄█████  ▄▄▄  ▄▄ ▄▄ ▄▄▄▄  ▄▄▄▄▄
 {AMARELO}░▒▓{CIANO}  ██▄▄█▀ ██    ██▀██ ███▄██ ██▀██   ██▀██ ██▄▄    ▀▀▀▄▄▄ ██▀██ ██ ██ ██▀██ ██▄▄
 {AMARELO}░▒▓{CIANO}  ██     ██▄▄▄ ██▀██ ██ ▀██ ▀███▀   ████▀ ██▄▄▄   █████▀ ██▀██ ▀███▀ ████▀ ██▄▄▄
-"""
+{AMARELO}░▒▓{CIANO}
+"""  # noqa
 
     while True:
+
         def opcao(num, esp=4):
             string = " " * esp + "[" + MAGENTA + f"{num}" + BRANCO + "]"
             return string
@@ -41,10 +44,10 @@ def menu():
         print("║" + " ".center(82) + BARRA)
         print(
             ""
-            + f"{BARRA}{opcao(1)} Cadastrar Novo Cliente      {opcao(5, 5)} Listagem por Tipo de Plano{" " * 11 + BARRA}\n"
-            + f"{BARRA}{opcao(2)} Editar Dados Cadastrais     {opcao(6, 5)} Buscar por CPF{" " * 23 + BARRA}\n"
-            + f"{BARRA}{opcao(3)} Remover Cliente do Sistema  {opcao(7, 5)} Listar Clientes por Vencimento{" " * 7 + BARRA}\n"
-            + f"{BARRA}{opcao(4)} Relatório Geral de Clientes {opcao(0, 5)} Sair do Sistema{" " * 22 + BARRA}"
+            + f"{BARRA}{opcao(1)} Cadastrar Novo Cliente      {opcao(5, 5)} Listagem por Tipo de Plano{" " * 11 + BARRA}\n"  # noqa
+            + f"{BARRA}{opcao(2)} Editar Dados Cadastrais     {opcao(6, 5)} Buscar por CPF{" " * 23 + BARRA}\n"  # noqa
+            + f"{BARRA}{opcao(3)} Remover Cliente do Sistema  {opcao(7, 5)} Listar Clientes por Vencimento{" " * 7 + BARRA}\n"  # noqa
+            + f"{BARRA}{opcao(4)} Relatório Geral de Clientes {opcao(0, 5)} Sair do Sistema{" " * 22 + BARRA}"  # noqa
         )
         print(AMARELO + "║" + " ".center(82) + BARRA)
         print(AMARELO + "╚" + "═" * 82 + "╝")
@@ -85,7 +88,7 @@ def menu():
 
         else:
             limpar_tela()
-            print("Opção invalida!")
+            print("\033[31mOpção invalida!\033[0m")
 
 
 menu()
