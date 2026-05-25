@@ -19,20 +19,36 @@ def limpar_tela():
 
 
 def menu():
+    AMARELO = "\033[33m"
+    MAGENTA = "\033[35m"
+    CIANO = "\033[36m"
+    BRANCO = "\033[0m"
+    BARRA = AMARELO + "║" + BRANCO
+
+    TITULO = f"""
+{AMARELO}░▒▓{CIANO}  █████▄ ▄▄     ▄▄▄  ▄▄  ▄▄  ▄▄▄    ▄▄▄▄  ▄▄▄▄▄   ▄█████  ▄▄▄  ▄▄ ▄▄ ▄▄▄▄  ▄▄▄▄▄
+{AMARELO}░▒▓{CIANO}  ██▄▄█▀ ██    ██▀██ ███▄██ ██▀██   ██▀██ ██▄▄    ▀▀▀▄▄▄ ██▀██ ██ ██ ██▀██ ██▄▄
+{AMARELO}░▒▓{CIANO}  ██     ██▄▄▄ ██▀██ ██ ▀██ ▀███▀   ████▀ ██▄▄▄   █████▀ ██▀██ ▀███▀ ████▀ ██▄▄▄
+"""
+
+    def opcao(num, esp=4):
+        return " " * esp + "[" + MAGENTA + f"{num}" + BRANCO + "]"
+
     while True:
-
-        print("=" * 80)
-        print(f"\n{"Planos":^80}\n")
-        print("=" * 80)
+        print(TITULO + BRANCO)
+        print(AMARELO + "\n╔═[ NÚCLEO SAÚDE v1.0 ]" + "═" * 60 + "╗")
+        print("║" + " ".center(82) + BARRA)
         print(
-            f"\n{"1 - Cadastrar":^40}¦{"5 - Listagem por Plano":^39}\n"
-            + f"{"2 - Editar":^40}¦{"6 - Buscar pro Cliente(CPF)":^39}\n"
-            + f"{"3 - Remover":^40}¦{"7 - listagem por Vencimento":^39}\n"
-            + f"{"4 - Listagem Geral":^40}¦{"0 - Sair":^39}\n"
+            ""
+            + f"{BARRA}{opcao(1)} Cadastrar Novo Cliente      {opcao(5, 5)} Listagem por Tipo de Plano{" " * 11 + BARRA}\n"
+            + f"{BARRA}{opcao(2)} Editar Dados Cadastrais     {opcao(6, 5)} Buscar por CPF{" " * 23 + BARRA}\n"
+            + f"{BARRA}{opcao(3)} Remover Cliente do Sistema  {opcao(7, 5)} Listar Clientes por Vencimento{" " * 7 + BARRA}\n"
+            + f"{BARRA}{opcao(4)} Relatório Geral de Clientes {opcao(0, 5)} Sair do Sistema{" " * 22 + BARRA}"
         )
-        print("=" * 80)
+        print(AMARELO + "║" + " ".center(82) + BARRA)
+        print(AMARELO + "╚" + "═" * 82 + "╝")
 
-        opcao = input("Escolha: ")
+        opcao = input(BRANCO + "=> Escolha: ")
         if opcao == "1":
             limpar_tela()
             cadastrar_cliente()
@@ -67,6 +83,7 @@ def menu():
             break
 
         else:
+            limpar_tela()
             print("Opção invalida!")
 
 
