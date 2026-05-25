@@ -331,11 +331,21 @@ def cadastrar_cliente():
             cpf, mensagem = validar_cpf(cpf)
 
             if cpf is None:
-                print(mensagem)
+                print("\033[38;2;255;0;0m" + mensagem)
+                input(
+                    "\n\033[38;2;143;0;255m"
+                    + "Pressione enter para continuar..."
+                    + "\033[0m"
+                )
                 return
 
             if cpf not in clientes:
-                print("O cliente não está cadastrado!")
+                print("\033[38;2;255;0;0m" + "O cliente não está cadastrado!")
+                input(
+                    "\n\033[38;2;143;0;255m"
+                    + "Pressione enter para continuar..."
+                    + "\033[0m"
+                )
                 return
 
             print("Para cadastrar um novo dependente no seu plano:")
