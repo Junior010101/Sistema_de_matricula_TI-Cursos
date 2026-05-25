@@ -31,10 +31,11 @@ def menu():
 {AMARELO}░▒▓{CIANO}  ██     ██▄▄▄ ██▀██ ██ ▀██ ▀███▀   ████▀ ██▄▄▄   █████▀ ██▀██ ▀███▀ ████▀ ██▄▄▄
 """
 
-    def opcao(num, esp=4):
-        return " " * esp + "[" + MAGENTA + f"{num}" + BRANCO + "]"
-
     while True:
+        def opcao(num, esp=4):
+            string = " " * esp + "[" + MAGENTA + f"{num}" + BRANCO + "]"
+            return string
+
         print(TITULO + BRANCO)
         print(AMARELO + "\n╔═[ NÚCLEO SAÚDE v1.0 ]" + "═" * 60 + "╗")
         print("║" + " ".center(82) + BARRA)
@@ -50,8 +51,8 @@ def menu():
 
         opcao = input(BRANCO + "=> Escolha: ")
         if opcao == "1":
-            limpar_tela()
             cadastrar_cliente()
+            limpar_tela()
 
         elif opcao == "2":
             limpar_tela()
@@ -62,20 +63,20 @@ def menu():
             remover()
 
         elif opcao == "4":
-            limpar_tela()
             listagem_geral()
+            limpar_tela()
 
         elif opcao == "5":
-            limpar_tela()
             lps()
+            limpar_tela()
 
         elif opcao == "6":
-            limpar_tela()
             cpf()
+            limpar_tela()
 
         elif opcao == "7":
-            limpar_tela()
             data_por_vecimento()
+            limpar_tela()
 
         elif opcao == "0":
             limpar_tela()

@@ -91,6 +91,10 @@ def cadastrar_cliente():
 
             escolha = input("Você possui algum dependente? (S/N): ")
 
+            if not escolha.upper() in ["S", "N"]:
+                print("\033[38;2;255;0;0mOpção invalida...\033[0m")
+                return
+
             if escolha.upper() == "S":
                 while True:
                     cpf_dep = input("\nDigite o CPF dele (000.000.000-00): ")
@@ -152,12 +156,19 @@ def cadastrar_cliente():
 
                     if escolha.upper() == "S":
                         continue
-                    break
+                    elif escolha.upper() == "N":
+                        break
+                    else:
+                        print("\033[38;2;255;0;0m[Opção invalida...\033[0m")
+                        continue
 
             calculo(clientes)
             vencimento(clientes)
 
             salvar_arquivo(clientes)
+
+            print("\033[32mCadastro feito com sucesso!")
+            input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
 
         case "2":
             cpf = input("\nDigite o CPF do seu titular (000.000.000-00): ")
@@ -239,6 +250,9 @@ def cadastrar_cliente():
             vencimento(clientes)
 
             salvar_arquivo(clientes)
+
+            print("\033[92mCadastro feito com sucesso!")
+            input("\nPressione enter para continuar...")
 
         case _:
             print("Opção invalida.\n")
@@ -396,6 +410,7 @@ def lps():
         "\n2 - Ouro"
         "\n3 - Prata"
         "\n4 - Esmeralda\n"
+        "\n\nEscolha: "
     )
     esc = (1 if plano == "1"else (2 if plano == "2" else 3 if plano == "3" else 4 if plano == "4" else 0))
 
@@ -411,7 +426,8 @@ def lps():
                 count += 1
 
         if count == 0:
-            print("Não tem nenhum cliente com esse plano meu manito!!!")
+            print("\033[38;2;255;0;0mNão tem nenhum cliente com esse plano meu manito!!!\033[0m")
+            input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
             return
 
         print("Diamante")
@@ -419,28 +435,36 @@ def lps():
             f"{"CPF":<14}¦ "
             + f"{"Nome":<20}¦ "
             + f"{"Sexo":<6}¦ "
+            + f"{"idade":<6}¦ "
             + f"{"E-mail":<20}¦ "
             + f"{"Data Nasc.":<11}¦ "
             + f"{"Telefone":<10}¦ "
             + f"{"Plano":<10}¦ "
             + f"{"Valor":<10}"
+            + f"{"Data venc.":<11}"
         )
         print("-" * 111)
 
         for chave, item in dados.items():
+            data_v = str(item["plano_saude"]["data_vencimento"])
             data_n = str(item["data_nascimento"])
+            data_n = f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]}"
+            _, idade = validar_data_nascimento(data_n)
 
             if item["plano_saude"]["plano"] == "Diamante":
                 print(
                     f"{chave:<14}¦ "
                     + f"{item['nome']:<20}¦ "
                     + f"{item['sexo']:<6}¦ "
+                    + f"{str(idade):<5} ¦ "
                     + f"{item['email']:<20}¦ "
                     + f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]:<11}¦ "
                     + f"{item['telefone']:<10}¦ "
                     + f"{item['plano_saude']['plano']:<10}¦ "
                     + f"{item['plano_saude']['valor']:<10.2f}"
+                    + f"{data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]:<10}"
                 )
+        input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
 
     elif esc == 2:
         count = 0
@@ -450,7 +474,8 @@ def lps():
                 count += 1
 
         if count == 0:
-            print("Não tem nenhum cliente com esse plano meu manito!!!")
+            print("\033[38;2;255;0;0mNão tem nenhum cliente com esse plano meu manito!!!\033[0m")
+            input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
             return
 
         print("Ouro")
@@ -458,28 +483,36 @@ def lps():
             f"{"CPF":<14}¦ "
             + f"{"Nome":<20}¦ "
             + f"{"Sexo":<6}¦ "
+            + f"{"idade":<6}¦ "
             + f"{"E-mail":<20}¦ "
             + f"{"Data Nasc.":<11}¦ "
             + f"{"Telefone":<10}¦ "
             + f"{"Plano":<10}¦ "
             + f"{"Valor":<10}"
+            + f"{"Data venc.":<11}"
         )
         print("-" * 116)
 
         for chave, item in dados.items():
+            data_v = str(item["plano_saude"]["data_vencimento"])
             data_n = str(item["data_nascimento"])
+            data_n = f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]}"
+            _, idade = validar_data_nascimento(data_n)
 
             if item["plano_saude"]["plano"] == "Ouro":
                 print(
                     f"{chave:<14}¦ "
                     + f"{item['nome']:<20}¦ "
                     + f"{item['sexo']:<6}¦ "
+                    + f"{str(idade):<5} ¦ "
                     + f"{item['email']:<20}¦ "
                     + f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]:<11}¦ "
                     + f"{item['telefone']:<10}¦ "
                     + f"{item['plano_saude']['plano']:<10}¦ "
                     + f"{item['plano_saude']['valor']:<10.2f}"
+                    + f"{data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]:<10}"
                 )
+        input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
 
     elif esc == 3:
         count = 0
@@ -489,7 +522,8 @@ def lps():
                 count += 1
 
         if count == 0:
-            print("Não tem nenhum cliente com esse plano meu manito!!!")
+            print("\033[38;2;255;0;0mNão tem nenhum cliente com esse plano meu manito!!!\033[0m")
+            input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
             return
 
         print("Prata")
@@ -497,28 +531,36 @@ def lps():
             f"{"CPF":<14}¦ "
             + f"{"Nome":<20}¦ "
             + f"{"Sexo":<6}¦ "
+            + f"{"idade":<6}¦ "
             + f"{"E-mail":<20}¦ "
             + f"{"Data Nasc.":<11}¦ "
             + f"{"Telefone":<10}¦ "
             + f"{"Plano":<10}¦ "
             + f"{"Valor":<10}"
+            + f"{"Data venc.":<11}"
         )
         print("-" * 111)
 
         for chave, item in dados.items():
+            data_v = str(item["plano_saude"]["data_vencimento"])
             data_n = str(item["data_nascimento"])
+            data_n = f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]}"
+            _, idade = validar_data_nascimento(data_n)
 
             if item["plano_saude"]["plano"] == "Prata":
                 print(
                     f"{chave:<14}¦ "
                     + f"{item['nome']:<20}¦ "
                     + f"{item['sexo']:<6}¦ "
+                    + f"{str(idade):<5} ¦ "
                     + f"{item['email']:<20}¦ "
                     + f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]:<11}¦ "
                     + f"{item['telefone']:<10}¦ "
                     + f"{item['plano_saude']['plano']:<10}¦ "
                     + f"{item['plano_saude']['valor']:<10.2f}"
+                    + f"{data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]:<10}"
                 )
+        input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
 
     elif esc == 4:
         count = 0
@@ -528,7 +570,8 @@ def lps():
                 count += 1
 
         if count == 0:
-            print("Não tem nenhum cliente com esse plano meu manito!!!")
+            print("\033[38;2;255;0;0mNão tem nenhum cliente com esse plano meu manito!!!\033[0m")
+            input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
             return
 
         print("Esmeralda")
@@ -536,70 +579,109 @@ def lps():
             f"{"CPF":<14}¦ "
             + f"{"Nome":<20}¦ "
             + f"{"Sexo":<6}¦ "
+            + f"{"idade":<6}¦ "
             + f"{"E-mail":<20}¦ "
             + f"{"Data Nasc.":<11}¦ "
             + f"{"Telefone":<10}¦ "
             + f"{"Plano":<10}¦ "
             + f"{"Valor":<10}"
+            + f"{"Data venc.":<11}"
         )
         print("-" * 111)
 
         for chave, item in dados.items():
+            data_v = str(item["plano_saude"]["data_vencimento"])
             data_n = str(item["data_nascimento"])
+            data_n = f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]}"
+            _, idade = validar_data_nascimento(data_n)
 
             if item["plano_saude"]["plano"] == "Esmeralda":
                 print(
                     f"{chave:<14}¦ "
                     + f"{item['nome']:<20}¦ "
                     + f"{item['sexo']:<6}¦ "
+                    + f"{str(idade):<5} ¦ "
                     + f"{item['email']:<20}¦ "
                     + f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]:<11}¦ "
                     + f"{item['telefone']:<10}¦ "
                     + f"{item['plano_saude']['plano']:<10}¦ "
                     + f"{item['plano_saude']['valor']:<10.2f}"
+                    + f"{data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]:<10}"
                 )
-
+        input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
 
 def listagem_geral():
     dados = ler_arquivo()
 
     if not dados:
-        print("Tem nada aqui não")
+        print("\033[38;2;255;0;0mNão tem nada aqui não!!!\033[0m")
+        input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
         return
 
     print(
         f"{"CPF":<15}¦ "
         + f"{"Nome":<21}¦ "
         + f"{"Sexo":<6}¦ "
+        + f"{"idade":<6}¦ "
         + f"{"E-mail":<21}¦ "
         + f"{"Data Nasc.":<11}¦ "
         + f"{"Telefone":<11}¦ "
         + f"{"Plano":<11}¦ "
-        + f"{"Valor":<11}"
+        + f"{"Valor":<10}¦ "
+        + f"{"Data venc.":<11}"
     )
-    print("-" * 116)
+    print("-" * 138)
 
     for chave, item in dados.items():
+        data_v = str(item["plano_saude"]["data_vencimento"])
         data_n = str(item["data_nascimento"])
+        data_n = f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]}"
+        _, idade = validar_data_nascimento(data_n)
 
-        if item["plano_saude"]["plano"] == "Diamante":
+        print(
+            f"{chave:<14} ¦ "
+            + f"{item['nome']:<20} ¦ "
+            + f"{item['sexo']:<5} ¦ "
+            + f"{str(idade):<5} ¦ "
+            + f"{item['email']:<20} ¦ "
+            + f"{data_n:<10} ¦ "
+            + f"{item['telefone']:<10} ¦ "
+            + f"{item['plano_saude']['plano']:<10} ¦ "
+            + f"{item['plano_saude']['valor']:<10.2f}"
+            + f"{data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]:<10}"
+        )
+        for cpf_dep, dep in item['terceiros'].items():
+            data_dep = str(dep["data_nascimento"])
+            data_dep = f"{data_dep[6:8]}-{data_dep[4:6]}-{data_dep[0:4]}"
+            _, idade_dep = validar_data_nascimento(data_dep)
+
             print(
-                f"{chave:<14} ¦ "
-                + f"{item['nome']:<20} ¦ "
-                + f"{item['sexo']:<5} ¦ "
-                + f"{item['email']:<20} ¦ "
-                + f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]} ¦ "
-                + f"{item['telefone']:<10} ¦ "
-                + f"{item['plano_saude']['plano']:<10} ¦ "
+                f"{cpf_dep:<14} ¦ "
+                + f"{dep['nome']:<20} ¦ "
+                + f"{'---':<5} ¦ "
+                + f"{str(idade_dep):<5} ¦ "
+                + f"{'Dependente':<20} ¦ "
+                + f"{data_dep:<10} ¦ "
+                + f"{'---':<10} ¦ "
+                + f"{dep['plano']:<10} ¦ "
                 + f"{item['plano_saude']['valor']:<10.2f}"
+                + f"{data_v[6:8] + '-' + data_v[4:6] + '-' + data_v[0:4]:<10}"
             )
+        
+            print("-" * 111)
+
+
+    input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
+
+    
 
 
 def data_por_vecimento():
     dados = ler_arquivo()
 
     if not dados:
-        print("Tem nada aqui não")
+        print("\033[38;2;255;0;0mNão tem nada aqui não!!!\033[0m")
+        input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
         return
 
     dados = dict(
@@ -634,13 +716,15 @@ def data_por_vecimento():
             + f"{item['plano_saude']['plano']:<10} ¦ "
             + f"{item['plano_saude']['valor']:<10.2f}"
         )
+    input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
 
 
 def cpf():
     dados = ler_arquivo()
 
     if not dados:
-        print("Tem nada aqui não")
+        print("\033[38;2;255;0;0mNão tem nada aqui não!!!\033[0m")
+        input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
         return
 
     cpf = input("Digite seu CPF (000.000.000-00): ")
@@ -677,3 +761,4 @@ def cpf():
                 + f"{item['plano_saude']['valor']:<10} ¦ "
                 + f"{data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]:<10}"
             )
+        input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
