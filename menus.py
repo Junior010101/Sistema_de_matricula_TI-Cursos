@@ -29,6 +29,7 @@ def gerar_menu_pergunta(pergunta, opcoes=None):
 
     return input(f" {CIANO}=>{RESET} {'Escolha' if opcoes else 'Digite'}: ")
 
+
 def cadastrar_cliente():
     clientes = ler_arquivo()
 
@@ -487,36 +488,55 @@ def cadastrar_cliente():
                 + "\033[0m"
             )
 
+
 # thiago layme
 def editar_cliente():
     editar = ler_arquivo()
-    cpf = gerar_menu_pergunta("informe o CPF do cliente que você deseja alterar")
+
+    cpf = gerar_menu_pergunta(
+        "Digite o CPF do cliente que deseja "
+        + "alterar nesse formato: (000.000.000-00)"
+    )
     cpf, erro = validar_cpf(cpf)
     if cpf is None:
-        print(erro)
-        return
-    if cpf in editar:
-        print(
-            "1 - Nome"
-            + "\n2 - Sexo"
-            + "\n3 - E-mail"
-            + "\n4 - Data de Nascimento"
-            + "\n5 - Telefone"
-            + "\n6 - Nome de terceiros"
-            + "\n7 - Data de nascimento de terceiros"
+        print("\033[31m" + erro)
+        input(
+            "\n"
+            + "\033[38;2;143;0;255m"
+            + "Pressione enter para continuar..."
+            + "\033[0m"
         )
-        quero_editar = gerar_menu_pergunta("Informe o número do que você quer editar", ["1 - Nome                       ", "2 - Sexo                       ", "3 - E-mail                     ", "4 - Data de Nascimento         ", "5 - Telefone                   ", "6 - Nome de terceiros          ", "7 - Dt. nascimento de terceiros"])
+        return
+
+    if cpf in editar:
+        quero_editar = gerar_menu_pergunta(
+            "Informe o número do que você quer editar",
+            [
+                "\b\b1 - Nome              ",
+                "\b\b2 - Sexo              ",
+                "\b\b3 - E-mail            ",
+                "\b\b4 - Data de Nascimento",
+                "\b\b5 - Telefone          ",
+                "\b\b6 - Nome de terceiros ",
+                "\b\b7 - Dt. nascimento de terceiros\b\b\b\b\b\b\b\b\b",
+            ],
+        )
         match quero_editar:
             case "1":
-                apenasletras = gerar_menu_pergunta("Informe o novo nome")
+                apenasletras = gerar_menu_pergunta("Informe o novo nome.")
+
                 if apenasletras.replace(" ", "").isalpha():
                     editar[cpf]["nome"] = apenasletras
                     print("Alteração feita com sucesso!")
                 else:
                     print("Erro! Caracter Inválido")
+                    return
 
             case "2":
-                mudarsexo = gerar_menu_pergunta("Digite o número para seu novo sexo", ["1 - feminino", "2 - masculino"])
+                mudarsexo = gerar_menu_pergunta(
+                    "Digite o número para seu novo sexo",
+                    ["1 - feminino", "2 - masculino"],
+                )
 
                 if mudarsexo == "1":
                     editar[cpf]["sexo"] = "fem"
@@ -526,34 +546,43 @@ def editar_cliente():
                     print("Alteração feita com sucesso!")
                 else:
                     print("Opção Inválida!")
+                    return
 
                 calculo(editar)
                 vencimento(editar)
 
             case "3":
-                editar[cpf]["email"] = gerar_menu_pergunta("Informe o novo E-mail: ")
+                editar[cpf]["email"] = gerar_menu_pergunta(
+                    "Informe o novo E-mail.",
+                )
                 print("Alteração feita com sucesso!")
 
             case "4":
-                apenasnumeros = gerar_menu_pergunta("Informe a nova data de nascimento (dd-mm-aaaa): ")
+                apenasnumeros = gerar_menu_pergunta(
+                    "Informe a nova data de nascimento (dd-mm-aaaa): "
+                )
 
                 if apenasnumeros.isdigit():
                     editar[cpf]["data_nascimento"] = apenasnumeros
                     print("Alteração feita com sucesso!")
                 else:
                     print("Erro! Caracter Inválido")
+                    return
 
                 calculo(editar)
                 vencimento(editar)
 
             case "5":
-                apenasnumeros = gerar_menu_pergunta("Informe o novo telefone: ")
+                apenasnumeros = gerar_menu_pergunta(
+                    "Informe o novo telefone.",
+                )
 
                 if apenasnumeros.isdigit():
                     editar[cpf]["telefone"] = apenasnumeros
                     print("Alteração feita com sucesso!")
                 else:
                     print("Erro! Caracter Inválido")
+                    return
 
             case "6":
                 quero_editar2 = gerar_menu_pergunta(
@@ -570,13 +599,14 @@ def editar_cliente():
                     print("Alteração feita com sucesso!")
                 else:
                     print("Erro! Caracter Inválido")
+                    return
 
             case "7":
                 quero_editar2 = gerar_menu_pergunta(
-                    "Informe o CPF do dependente que você quer editar: "
+                    "Informe o CPF do dependente que você quer editar."
                 )
                 apenasnumeros = gerar_menu_pergunta(
-                    "Informe a nova data de nascimento (dd-mm-aaaa): "
+                    "Informe a nova data de nascimento: (dd-mm-aaaa)"
                 )
                 data_nascimento, erro = validar_data_nascimento(apenasnumeros)
 
@@ -590,21 +620,39 @@ def editar_cliente():
                 print("Alteração feita com sucesso!")
 
             case _:
-                print("Opção Invalida.\n")
+                print("\033[31m" + "Opção Invalida.\n")
+                input(
+                    "\n"
+                    + "\033[38;2;143;0;255m"
+                    + "Pressione enter para continuar..."
+                    + "\033[0m"
+                )
                 return
 
         salvar_arquivo(editar)
 
     else:
-        print("Desculpe, o CPF informado não foi encontrado!")
+        print("\033[31m" + "Desculpe, o CPF informado não foi encontrado!")
+        input(
+            "\n"
+            + "\033[38;2;143;0;255m"
+            + "Pressione enter para continuar..."
+            + "\033[0m"
+        )
+
 
 # Marcos
 def remover():
     dados = ler_arquivo()
     while True:
-        esc1 = gerar_menu_pergunta("Escolha uma opção:",["1-Excluir Titular","2-Excluir Dependente"])
+        esc1 = gerar_menu_pergunta(
+            "Escolha uma opção:",
+            ["1-Excluir Titular", "2-Excluir Dependente"],
+        )
         if esc1 == "1":
-            cpf = gerar_menu_pergunta("Informe o cpf do Cliente que deseja excluir: ")
+            cpf = gerar_menu_pergunta(
+                "Informe o cpf do Cliente que deseja excluir",
+            )
             if "." in list(cpf) and "-" in list(cpf):
                 a = cpf.split(".")
                 b = a[2].split("-")
@@ -618,8 +666,10 @@ def remover():
             else:
                 print("Você digitou um cpf inexistente ")
         elif esc1 == "2":
-            cpf = gerar_menu_pergunta("Informe o cpf do cliente que deseja excluir o Dependente: ")
-            
+            cpf = gerar_menu_pergunta(
+                "Informe o cpf do cliente que deseja excluir o Dependente: "
+            )
+
             if "." in list(cpf) and "-" in list(cpf):
                 a = cpf.split(".")
                 b = a[2].split("-")
@@ -627,7 +677,9 @@ def remover():
             else:
                 print("use o formato 000.000.000-00")
             if cpf in dados:
-                cpft = gerar_menu_pergunta("Informe o cpf do Dependente que deseja excluir: ")
+                cpft = gerar_menu_pergunta(
+                    "Informe o cpf do Dependente que deseja excluir: "
+                )
 
                 if "." in list(cpft) and "-" in list(cpft):
                     a = cpft.split(".")
@@ -647,6 +699,7 @@ def remover():
             print("você digitou algo de errado")
     salvar_arquivo(dados)
 
+
 # Ximenes
 def lps():
     dados = ler_arquivo()
@@ -659,22 +712,21 @@ def lps():
         "\n\nEscolha: "
     )
     planos = {"1": 1, "2": 2, "3": 3, "4": 4}
-    
 
     if plano not in planos:
         print("você digitou algo de errado")
         input(
-                "\n\033[38;2;143;0;255m"
-                + "Pressione enter para continuar..."
-                + "\033[0m"
+            "\n"
+            + "\033[38;2;143;0;255m"
+            + "Pressione enter para continuar..."
+            + "\033[0m"
         )
         return
-    
+
     esc = planos[plano]
-    
+
     if esc == 1:
         count = 0
-
 
         for _, item in dados.items():
             if item["plano_saude"]["plano"] == "Diamante":
@@ -695,7 +747,6 @@ def lps():
 
         print("Diamante")
         print(
-            
             "\033[30;47m"
             + f"{"CPF":<14}¦ "
             + f"{"Nome":<20}¦ "
@@ -951,9 +1002,8 @@ def listagem_geral():
         + f"{"Data venc.":<12}"
         + "\033[0m"
     )
-    
-    print("\033[30;47m" + "-" * 164 + "\033[0m")
 
+    print("\033[30;47m" + "-" * 164 + "\033[0m")
 
     for chave, item in dados.items():
         data_v = str(item["plano_saude"]["data_vencimento"])
@@ -975,7 +1025,7 @@ def listagem_geral():
             + f"{item['plano_saude']['plano']:<10} ¦ "
             + f"{item['plano_saude']['valor']:<10.2f} ¦ "
             + f"{data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]:<12}"
-            +"\033[30;0m"
+            + "\033[30;0m"
         )
         for cpf_dep, dep in item["terceiros"].items():
             data_dep = str(dep["data_nascimento"])
@@ -995,7 +1045,7 @@ def listagem_geral():
                 + f"{dep['plano']:<10} ¦ "
                 + f"{item['plano_saude']['valor']:<10.2f} ¦ "
                 + f"{data_v[6:8] + '-' + data_v[4:6] + '-' + data_v[0:4]:<12}"
-                +"\033[30;0m"
+                + "\033[30;0m"
             )
 
             print("\033[30;47m" + "-" * 164 + "\033[0m")
@@ -1058,14 +1108,13 @@ def data_por_vecimento():
 def cpf():
     dados = ler_arquivo()
 
-
     cpf = gerar_menu_pergunta("Digite seu CPF (000.000.000-00): ")
     cpf, err = validar_cpf(cpf)
     if cpf is None:
         print(err)
         input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
         return
-    if  cpf not in dados:
+    if cpf not in dados:
         print("Não tem nada aqui não!!")
         input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
         return
@@ -1088,10 +1137,9 @@ def cpf():
 
     for chave, item in dados.items():
         data_v = str(item["plano_saude"]["data_vencimento"])
-        data_n = str(item["data_nascimento"]) #2000 10 10 data_n[6:8]
+        data_n = str(item["data_nascimento"])  # 2000 10 10 data_n[6:8]
         data_n = f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]}"
         _, idade = validar_data_nascimento(data_n)
-        titular = "Titular" if item["titular"] else "Dependente"
 
         if chave == cpf:
             print(
@@ -1114,7 +1162,6 @@ def cpf():
                 _, idade_dep = validar_data_nascimento(data_dep)
 
             print(
-
                 "\033[30;47m"
                 + f"{'Dependente':<12}¦ "
                 + f"{dep['nome']:<19} ¦ "
