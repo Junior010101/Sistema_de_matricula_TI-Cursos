@@ -485,7 +485,7 @@ def cadastrar_cliente():
             )
 
 
-# thiago laymeaaaa
+# thiago layme
 def editar_cliente():
     editar = ler_arquivo()
 
@@ -602,34 +602,28 @@ def editar_cliente():
         print("Desculpe, o CPF informado não foi encontrado!")
 
 
-#        lista[0]+ lista[1]+ list[0] + list [1]
-# Marcos 100.000.000-00
+# Marcos
 def remover():
     dados = ler_arquivo()
     while True:
-        esc1 = input(
-            "1 - Excluir um Cliente" + "\n"
-            "2 - Excluir um Dependente" + "\n"
-            "Resposta: "
-        )
+        esc1 = gerar_menu_pergunta("Escolha uma opção:",["1-Excluir Titular","2-Excluir Dependente"])
         if esc1 == "1":
-            cpf = input("Informe o cpf do Cliente que deseja excluir: ")
+            cpf = gerar_menu_pergunta("Informe o cpf do Cliente que deseja excluir: ")
             if "." in list(cpf) and "-" in list(cpf):
                 a = cpf.split(".")
                 b = a[2].split("-")
                 cpf = a[0] + a[1] + b[0] + b[1]
             else:
-                print("use o formato 000.000.000-00")
+                print("Use o formato 000.000.000-00")
             if cpf in dados:
                 del dados[cpf]
                 print("Cliente excluido com sucesso!")
                 break
             else:
-                print("vc digitou um cpf inexistente ")
+                print("Você digitou um cpf inexistente ")
         elif esc1 == "2":
-            cpf = input(
-                "Informe o cpf do cliente que deseja excluir o Dependente: ",
-            )
+            cpf = gerar_menu_pergunta("Informe o cpf do cliente que deseja excluir o Dependente: ")
+            
             if "." in list(cpf) and "-" in list(cpf):
                 a = cpf.split(".")
                 b = a[2].split("-")
@@ -637,9 +631,7 @@ def remover():
             else:
                 print("use o formato 000.000.000-00")
             if cpf in dados:
-                cpft = input(
-                    "Informe o cpf do Dependente que deseja excluir: ",
-                )
+                cpft = gerar_menu_pergunta("Informe o cpf do Dependente que deseja excluir: ")
 
                 if "." in list(cpft) and "-" in list(cpft):
                     a = cpft.split(".")
@@ -658,7 +650,6 @@ def remover():
         else:
             print("você digitou algo de errado")
     salvar_arquivo(dados)
-
 
 # Ximenes
 def lps():
