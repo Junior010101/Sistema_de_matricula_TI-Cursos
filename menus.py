@@ -1054,13 +1054,12 @@ def cpf():
     dados = ler_arquivo()
 
     if not dados:
-        print("\033[38;2;255;0;0mNão tem nada aqui não!!!\033[0m")
+        o = gerar_menu_pergunta("Não tem nada aqui não!!")
         input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
         return
 
-    cpf = input("Digite seu CPF (000.000.000-00): ")
+    cpf = gerar_menu_pergunta("Digite seu CPF (000.000.000-00): ")
     cpf, err = validar_cpf(cpf)
-
     if cpf is None:
         print(err)
         return
@@ -1083,7 +1082,7 @@ def cpf():
 
     for chave, item in dados.items():
         data_v = str(item["plano_saude"]["data_vencimento"])
-        data_n = str(item["data_nascimento"])
+        data_n = str(item["data_nascimento"]) #2000 10 10 data_n[6:8]
         data_n = f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]}"
         _, idade = validar_data_nascimento(data_n)
         titular = "Titular" if item["titular"] else "Dependente"
@@ -1096,7 +1095,7 @@ def cpf():
                 + f"{item['sexo']:<5} ¦ "
                 + f"{str(idade):<5} ¦ "
                 + f"{item['email']:<20} ¦ "
-                + f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]:<12} ¦ "
+                + f"{data_n:<12} ¦ "
                 + f"{item['telefone']:<10} ¦ "
                 + f"{item['plano_saude']['plano']:<10} ¦ "
                 + f"{item['plano_saude']['valor']:<10.2f} ¦ "
@@ -1126,4 +1125,4 @@ def cpf():
 
             print("\033[30;47m" + "-" * 140 + "\033[0m")
 
-        input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
+    input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
