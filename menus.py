@@ -650,17 +650,31 @@ def remover():
 # Ximenes
 def lps():
     dados = ler_arquivo()
-    plano = gerar_menu_pergunta("Informe o plano de saúde que deseja listar os clientes: ", ["1 - Diamante ", "2 - Ouro     ", "3 - Prata    ", "4 - Esmeralda", "Escolha:     "])
-    
+    plano = input(
+        "Informe o plano de saúde que deseja listar os clientes: "
+        "\n1 - Diamante"
+        "\n2 - Ouro"
+        "\n3 - Prata"
+        "\n4 - Esmeralda\n"
+        "\n\nEscolha: "
+    )
     planos = {"1": 1, "2": 2, "3": 3, "4": 4}
-    esc = planos[plano]
+    
 
     if plano not in planos:
         print("você digitou algo de errado")
+        input(
+                "\n\033[38;2;143;0;255m"
+                + "Pressione enter para continuar..."
+                + "\033[0m"
+        )
         return
-
-    elif esc == 1:
+    
+    esc = planos[plano]
+    
+    if esc == 1:
         count = 0
+
 
         for _, item in dados.items():
             if item["plano_saude"]["plano"] == "Diamante":
@@ -687,15 +701,15 @@ def lps():
             + f"{"Nome":<20}¦ "
             + f"{"Sexo":<6}¦ "
             + f"{"idade":<6}¦ "
-            + f"{"E-mail":<20}¦ "
+            + f"{"E-mail":<27}¦ "
             + f"{"Data Nasc.":<11}¦ "
-            + f"{"Telefone":<10}¦ "
+            + f"{"Telefone":<12}¦ "
             + f"{"Plano":<10}¦ "
-            + f"{"Valor":<10}"
+            + f"{"Valor":<10}¦"
             + f"{"Data venc.":<11}"
             + "\033[0m"
         )
-        print("\033[30;47m" + "-" * 111 + "\033[0m")
+        print("\033[30;47m" + "-" * 144 + "\033[0m")
 
         for chave, item in dados.items():
             data_n = str(item["data_nascimento"])
@@ -712,11 +726,11 @@ def lps():
                     + f"{item['nome']:<20}¦ "
                     + f"{item['sexo']:<6}¦ "
                     + f"{str(idade):<5} ¦ "
-                    + f"{item['email']:<20}¦ "
+                    + f"{item['email']:<27}¦ "
                     + f"{str(data_n):<11}¦ "
-                    + f"{item['telefone']:<10}¦ "
+                    + f"{item['telefone']:<12}¦ "
                     + f"{item['plano_saude']['plano']:<10}¦ "
-                    + f"{item['plano_saude']['valor']:<10.2f}"
+                    + f"{item['plano_saude']['valor']:<11.2f}¦"
                     + f"{str(data_v):<10}"
                     + "\033[0m"
                 )
@@ -749,15 +763,15 @@ def lps():
             + f"{"Nome":<20}¦ "
             + f"{"Sexo":<6}¦ "
             + f"{"idade":<6}¦ "
-            + f"{"E-mail":<20}¦ "
+            + f"{"E-mail":<27}¦ "
             + f"{"Data Nasc.":<11}¦ "
-            + f"{"Telefone":<10}¦ "
+            + f"{"Telefone":<12}¦ "
             + f"{"Plano":<10}¦ "
-            + f"{"Valor":<10}"
+            + f"{"Valor":<10}¦ "
             + f"{"Data venc.":<11}"
             + "\033[0m"
         )
-        print("\033[30;47m" + "-" * 116 + "\033[0m")
+        print("\033[30;47m" + "-" * 145 + "\033[0m")
 
         for chave, item in dados.items():
             data_n = str(item["data_nascimento"])
@@ -774,12 +788,12 @@ def lps():
                     + f"{item['nome']:<20}¦ "
                     + f"{item['sexo']:<6}¦ "
                     + f"{str(idade):<5} ¦ "
-                    + f"{item['email']:<20}¦ "
+                    + f"{item['email']:<27}¦ "
                     + f"{str(data_n):<11}¦ "
-                    + f"{item['telefone']:<10}¦ "
+                    + f"{item['telefone']:<12}¦ "
                     + f"{item['plano_saude']['plano']:<10}¦ "
-                    + f"{item['plano_saude']['valor']:<10.2f}"
-                    + f"{str(data_v):<10}"
+                    + f"{item['plano_saude']['valor']:<10.2f}¦ "
+                    + f"{str(data_v):<11}"
                     + "\033[0m"
                 )
         input(
@@ -816,15 +830,15 @@ def lps():
             + f"{"Nome":<20}¦ "
             + f"{"Sexo":<6}¦ "
             + f"{"idade":<6}¦ "
-            + f"{"E-mail":<20}¦ "
+            + f"{"E-mail":<27}¦ "
             + f"{"Data Nasc.":<11}¦ "
-            + f"{"Telefone":<10}¦ "
+            + f"{"Telefone":<12}¦ "
             + f"{"Plano":<10}¦ "
-            + f"{"Valor":<10}"
+            + f"{"Valor":<10}¦ "
             + f"{"Data venc.":<11}"
             + "\033[0m"
         )
-        print("\033[30;47m" + "-" * 111 + "\033[0m")
+        print("\033[30;47m" + "-" * 145 + "\033[0m")
 
         for chave, item in dados.items():
             data_n = str(item["data_nascimento"])
@@ -841,11 +855,11 @@ def lps():
                     + f"{item['nome']:<20}¦ "
                     + f"{item['sexo']:<6}¦ "
                     + f"{str(idade):<5} ¦ "
-                    + f"{item['email']:<20}¦ "
+                    + f"{item['email']:<27}¦ "
                     + f"{str(data_n):<11}¦ "
-                    + f"{item['telefone']:<10}¦ "
+                    + f"{item['telefone']:<12}¦ "
                     + f"{item['plano_saude']['plano']:<10}¦ "
-                    + f"{item['plano_saude']['valor']:<10.2f}"
+                    + f"{item['plano_saude']['valor']:<10.2f}¦ "
                     + f"{str(data_v):<11}"
                     + "\033[0m"
                 )
@@ -878,15 +892,15 @@ def lps():
             + f"{"Nome":<20}¦ "
             + f"{"Sexo":<6}¦ "
             + f"{"idade":<6}¦ "
-            + f"{"E-mail":<20}¦ "
+            + f"{"E-mail":<27}¦ "
             + f"{"Data Nasc.":<11}¦ "
-            + f"{"Telefone":<10}¦ "
+            + f"{"Telefone":<12}¦ "
             + f"{"Plano":<10}¦ "
-            + f"{"Valor":<10}"
+            + f"{"Valor":<10}¦ "
             + f"{"Data venc.":<11}"
             + "\033[0m"
         )
-        print("\033[30;47m" + "-" * 111 + "\033[0m")
+        print("\033[30;47m" + "-" * 144 + "\033[0m")
 
         for chave, item in dados.items():
             data_n = str(item["data_nascimento"])
@@ -898,16 +912,18 @@ def lps():
 
             if item["plano_saude"]["plano"] == "Esmeralda":
                 print(
-                    f"{chave:<14}¦ "
+                    "\033[30;47m"
+                    + f"{chave:<14}¦ "
                     + f"{item['nome']:<20}¦ "
                     + f"{item['sexo']:<6}¦ "
                     + f"{str(idade):<5} ¦ "
-                    + f"{item['email']:<20}¦ "
+                    + f"{item['email']:<27}¦ "
                     + f"{str(data_n):<11}¦ "
-                    + f"{item['telefone']:<10}¦ "
+                    + f"{item['telefone']:<12}¦ "
                     + f"{item['plano_saude']['plano']:<10}¦ "
-                    + f"{item['plano_saude']['valor']:<10.2f}"
-                    + f"{str(data_v):<10}"
+                    + f"{item['plano_saude']['valor']:<10.2f}¦ "
+                    + f"{str(data_v):<11}"
+                    + "\033[0m"
                 )
         input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
 
@@ -927,16 +943,16 @@ def listagem_geral():
         + f"{"Nome":<21}¦ "
         + f"{"Sexo":<6}¦ "
         + f"{"idade":<6}¦ "
-        + f"{"E-mail":<21}¦ "
+        + f"{"E-mail":<27}¦ "
         + f"{"Data Nasc.":<11}¦ "
-        + f"{"Telefone":<11}¦ "
+        + f"{"Telefone":<12}¦ "
         + f"{"Plano":<11}¦ "
         + f"{"Valor":<11}¦ "
         + f"{"Data venc.":<12}"
         + "\033[0m"
     )
     
-    print("\033[30;47m" + "-" * 157 + "\033[0m")
+    print("\033[30;47m" + "-" * 164 + "\033[0m")
 
 
     for chave, item in dados.items():
@@ -953,7 +969,7 @@ def listagem_geral():
             + f"{item['nome']:<20} ¦ "
             + f"{item['sexo']:<5} ¦ "
             + f"{str(idade):<5} ¦ "
-            + f"{item['email']:<20} ¦ "
+            + f"{item['email']:<25} ¦ "
             + f"{data_n:<10} ¦ "
             + f"{item['telefone']:<10} ¦ "
             + f"{item['plano_saude']['plano']:<10} ¦ "
@@ -973,16 +989,16 @@ def listagem_geral():
                 + f"{dep['nome']:<20} ¦ "
                 + f"{dep['sexo']:<5} ¦ "
                 + f"{str(idade_dep):<5} ¦ "
-                + f"{'----':<20} ¦ "
+                + f"{'----':<26} ¦ "
                 + f"{data_dep:<10} ¦ "
-                + f"{'----':<10} ¦ "
+                + f"{'----':<11} ¦ "
                 + f"{dep['plano']:<10} ¦ "
                 + f"{item['plano_saude']['valor']:<10.2f} ¦ "
                 + f"{data_v[6:8] + '-' + data_v[4:6] + '-' + data_v[0:4]:<12}"
                 +"\033[30;0m"
             )
 
-            print("\033[30;47m" + "-" * 157 + "\033[0m")
+            print("\033[30;47m" + "-" * 164 + "\033[0m")
 
     input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
 
@@ -1008,14 +1024,14 @@ def data_por_vecimento():
         + f"{"Nome":<21}¦ "
         + f"{"Sexo":<6}¦ "
         + f"{"idade":<6}¦ "
-        + f"{"E-mail":<21}¦ "
+        + f"{"E-mail":<31}¦ "
         + f"{"Data venc.":<11}¦ "
-        + f"{"Telefone":<11}¦ "
+        + f"{"Telefone":<12}¦ "
         + f"{"Plano":<11}¦"
         + f"{"Valor":<11}"
         + "\033[0m"
     )
-    print("\033[30;47m" + "-" * 130 + "\033[0m")
+    print("\033[30;47m" + "-" * 141 + "\033[0m")
 
     for chave, item in dados.items():
         data_v = str(item["plano_saude"]["data_vencimento"])
@@ -1029,7 +1045,7 @@ def data_por_vecimento():
             + f"{item['nome']:<20} ¦ "
             + f"{item['sexo']:<5} ¦ "
             + f"{str(idade):<5} ¦ "
-            + f"{item['email']:<20} ¦ "
+            + f"{item['email']:<30} ¦ "
             + f"{data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]:<10} ¦ "
             + f"{item['telefone']:<10} ¦ "
             + f"{item['plano_saude']['plano']:<10} ¦ "
@@ -1042,15 +1058,16 @@ def data_por_vecimento():
 def cpf():
     dados = ler_arquivo()
 
-    if not dados:
-        o = gerar_menu_pergunta("Não tem nada aqui não!!")
-        input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
-        return
 
     cpf = gerar_menu_pergunta("Digite seu CPF (000.000.000-00): ")
     cpf, err = validar_cpf(cpf)
     if cpf is None:
         print(err)
+        input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
+        return
+    if  cpf not in dados:
+        print("Não tem nada aqui não!!")
+        input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
         return
 
     print(
@@ -1059,15 +1076,15 @@ def cpf():
         + f"{"Nome":<20}¦ "
         + f"{"Sexo":<6}¦ "
         + f"{"idade":<6}¦ "
-        + f"{"E-mail":<21}¦ "
+        + f"{"E-mail":<31}¦ "
         + f"{"Data nasc.":<13}¦ "
-        + f"{"Telefone":<11}¦ "
+        + f"{"Telefone":<12}¦ "
         + f"{"Plano":<11}¦ "
         + f"{"Valor":<11}¦ "
         + f"{"Data venc.":<11}"
         + "\033[0m"
     )
-    print("\033[30;47m" + "-" * 140 + "\033[0m")
+    print("\033[30;47m" + "-" * 151 + "\033[0m")
 
     for chave, item in dados.items():
         data_v = str(item["plano_saude"]["data_vencimento"])
@@ -1083,9 +1100,9 @@ def cpf():
                 + f"{item['nome']:<19} ¦ "
                 + f"{item['sexo']:<5} ¦ "
                 + f"{str(idade):<5} ¦ "
-                + f"{item['email']:<20} ¦ "
+                + f"{item['email']:<30} ¦ "
                 + f"{data_n:<12} ¦ "
-                + f"{item['telefone']:<10} ¦ "
+                + f"{item['telefone']:<11} ¦ "
                 + f"{item['plano_saude']['plano']:<10} ¦ "
                 + f"{item['plano_saude']['valor']:<10.2f} ¦ "
                 + f"{data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]:<11}"
@@ -1103,15 +1120,15 @@ def cpf():
                 + f"{dep['nome']:<19} ¦ "
                 + f"{dep['sexo']:<5} ¦ "
                 + f"{str(idade_dep):<5} ¦ "
-                + f"{'----':<20} ¦ "
-                + f"{data_dep:<12} ¦ "
-                + f"{'----':<10} ¦ "
+                + f"{'----':<30} ¦ "
+                + f"{data_dep:<11} ¦ "
+                + f"{'----':<12} ¦ "
                 + f"{dep['plano']:<10} ¦ "
                 + f"{item['plano_saude']['valor']:<10.2f} ¦ "
                 + f"{data_v[6:8] + '-' + data_v[4:6] + '-' + data_v[0:4]:<11}"
                 + "\033[30;0m"
             )
 
-            print("\033[30;47m" + "-" * 140 + "\033[0m")
+            print("\033[30;47m" + "-" * 151 + "\033[0m")
 
     input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
