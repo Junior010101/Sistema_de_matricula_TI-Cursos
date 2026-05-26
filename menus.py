@@ -906,7 +906,7 @@ def lps():
             data_n = str(item["data_nascimento"])
             data_n = data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]
             _, idade = validar_data_nascimento(data_n)
-
+            
             data_v = str(item["plano_saude"]["data_vencimento"])
             data_v = data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]
 
@@ -957,9 +957,9 @@ def listagem_geral():
 
     for chave, item in dados.items():
         data_v = str(item["plano_saude"]["data_vencimento"])
-        data_v = f"{data_v[6:8]}-{data_v[4:6]}-{data_v[0:4]}"
+        
         data_n = str(item["data_nascimento"])
-        data_n = f"{data_n[6:8]}-{data_n[4:6]}-{data_n[0:4]}"
+        data_n = f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]}"
         _, idade = validar_data_nascimento(data_n)
         titular = "Titular" if item["titular"] else "Dependente"
 
@@ -976,16 +976,14 @@ def listagem_geral():
             + f"{item['telefone']:<13}│"
             + f"{item['plano_saude']['plano']:<12}│"
             + f"{item['plano_saude']['valor']:<10.2f}│"
-            + f"{data_v:<12}"
+            + f"{data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]:<12}"
             + "\033[0m"
         )
 
         # DEPENDENTES
         for cpf_dep, dep in item["terceiros"].items():
-
             data_dep = str(dep["data_nascimento"])
-            data_dep = f"{data_dep[6:8]}-{data_dep[4:6]}-{data_dep[0:4]}"
-
+            data_dep = f"{data_dep[6:8] + "-" + data_dep[4:6] + "-" + data_dep[0:4]}"
             _, idade_dep = validar_data_nascimento(data_dep)
 
             print(
@@ -1000,7 +998,7 @@ def listagem_geral():
                 + f"{'----':<13}│"
                 + f"{dep['plano']:<12}│"
                 + f"{item['plano_saude']['valor']:<10.2f}│"
-                + f"{data_v:<12}"
+                + f"{data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]:<12}"
                 + "\033[0m"
             )
 
