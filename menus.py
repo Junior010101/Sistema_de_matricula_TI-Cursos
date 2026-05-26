@@ -29,7 +29,6 @@ def gerar_menu_pergunta(pergunta, opcoes=None):
 
     return input(f" {CIANO}=>{RESET} {'Escolha' if opcoes else 'Digite'}: ")
 
-
 def cadastrar_cliente():
     clientes = ler_arquivo()
 
@@ -488,7 +487,6 @@ def cadastrar_cliente():
                 + "\033[0m"
             )
 
-
 # thiago layme
 def editar_cliente():
     editar = ler_arquivo()
@@ -605,7 +603,6 @@ def editar_cliente():
     else:
         print("Desculpe, o CPF informado não foi encontrado!")
 
-
 # Marcos
 def remover():
     dados = ler_arquivo()
@@ -658,22 +655,15 @@ def remover():
 # Ximenes
 def lps():
     dados = ler_arquivo()
-    plano = input(
-        "Informe o plano de saúde que deseja listar os clientes: "
-        "\n1 - Diamante"
-        "\n2 - Ouro"
-        "\n3 - Prata"
-        "\n4 - Esmeralda\n"
-        "\n\nEscolha: "
-    )
+    plano = gerar_menu_pergunta("Informe o plano de saúde para listar:",["1 - Diamante","2 - Ouro","3 - Prata","4 - Esmeralda"])
     planos = {"1": 1, "2": 2, "3": 3, "4": 4}
-    esc = planos[plano]
-
-    if plano not in planos:
+    if plano in planos:
+        esc = planos[plano]
+    else:
         print("você digitou algo de errado")
         return
 
-    elif esc == 1:
+    if esc == 1:
         count = 0
 
         for _, item in dados.items():
@@ -681,31 +671,11 @@ def lps():
                 count += 1
 
         if count == 0:
-            print(
-                "\033[38;2;255;0;0m"
-                + "Não tem nenhum cliente com esse plano meu manito!!!"
-                + "\033[0m"
-            )
-            input(
-                "\n\033[38;2;143;0;255m"
-                + "Pressione enter para continuar..."
-                + "\033[0m"
-            )
+            esc2 = gerar_menu_pergunta("Não tem nenhum cliente com esse plano meu manito!!!",["Pressione enter para continuar..."])
             return
 
         print("Diamante")
-        print(
-            f"{"CPF":<14}¦ "
-            + f"{"Nome":<20}¦ "
-            + f"{"Sexo":<6}¦ "
-            + f"{"idade":<6}¦ "
-            + f"{"E-mail":<20}¦ "
-            + f"{"Data Nasc.":<11}¦ "
-            + f"{"Telefone":<10}¦ "
-            + f"{"Plano":<10}¦ "
-            + f"{"Valor":<10}"
-            + f"{"Data venc.":<11}"
-        )
+        print(f"{"CPF":<14}¦ {"Nome":<20}¦ {"Sexo":<6}¦ {"idade":<6}¦ {"E-mail":<20}¦ {"Data Nasc.":<11}¦ {"Telefone":<10}¦ {"Plano":<10}¦ {"Valor":<10} ¦ {"Data venc.":<11}")
         print("-" * 111)
 
         for chave, item in dados.items():
@@ -717,18 +687,8 @@ def lps():
             data_v = data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]
 
             if item["plano_saude"]["plano"] == "Diamante":
-                print(
-                    f"{chave:<14}¦ "
-                    + f"{item['nome']:<20}¦ "
-                    + f"{item['sexo']:<6}¦ "
-                    + f"{str(idade):<5} ¦ "
-                    + f"{item['email']:<20}¦ "
-                    + f"{str(data_n):<11}¦ "
-                    + f"{item['telefone']:<10}¦ "
-                    + f"{item['plano_saude']['plano']:<10}¦ "
-                    + f"{item['plano_saude']['valor']:<10.2f}"
-                    + f"{str(data_v):<10}"
-                )
+                print(f"{chave:<14}¦ {item['nome']:<20}¦ {item['sexo']:<6}¦ {str(idade):<6}¦ {item['email']:<20}¦ {str(data_n):<11}¦ {item['telefone']:<10}¦ {item['plano_saude']['plano']:<10}¦ {item['plano_saude']['valor']:<10.2f}¦ {str(data_v):<10}")
+
         input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
 
     elif esc == 2:
@@ -910,7 +870,6 @@ def lps():
                 )
         input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
 
-
 def listagem_geral():
     dados = ler_arquivo()
 
@@ -977,7 +936,6 @@ def listagem_geral():
 
     input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
 
-
 def data_por_vecimento():
     dados = ler_arquivo()
 
@@ -1025,33 +983,20 @@ def data_por_vecimento():
         )
     input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
 
-
 def cpf():
     dados = ler_arquivo()
-
     if not dados:
-        print("\033[38;2;255;0;0mNão tem nada aqui não!!!\033[0m")
-        input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
+        a = gerar_menu_pergunta("Não tem nada aqui não!!!",["Pressione enter para continuar..."])
         return
 
-    cpf = input("Digite seu CPF (000.000.000-00): ")
+    cpf = gerar_menu_pergunta("Digite seu CPF (000.000.000-00): ")
     cpf, err = validar_cpf(cpf)
 
     if cpf is None:
         print(err)
         return
 
-    print(
-        f"{"Nome":<20}¦ "
-        + f"{"Sexo":<6}¦ "
-        + f"{"idade":<6}¦ "
-        + f"{"E-mail":<21}¦ "
-        + f"{"Data nasc.":<13}¦ "
-        + f"{"Telefone":<11}¦ "
-        + f"{"Plano":<11}¦ "
-        + f"{"Valor":<11}¦ "
-        + f"{"Data venc.":<11}"
-    )
+    print(f"{"Nome":<20}¦ {"Sexo":<6}¦ {"idade":<6}¦ {"E-mail":<21}¦ {"Data nasc.":<13}¦ {"Telefone":<11}¦ {"Plano":<11}¦ {"Valor":<11}¦ {"Data venc.":<11}")
     print("-" * 116)
 
     for chave, item in dados.items():
@@ -1062,18 +1007,8 @@ def cpf():
         titular = "Titular" if item["titular"] else "Dependente"
 
         if chave == cpf:
-            print(
-
-                f"{'titular':<20}¦ "
-                + f"{item['sexo']:<5} ¦ "
-                + f"{str(idade):<5} ¦ "
-                + f"{item['email']:<20} ¦ "
-                + f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]:<12} ¦ "
-                + f"{item['telefone']:<10} ¦ "
-                + f"{item['plano_saude']['plano']:<10} ¦  "
-                + f"{item['plano_saude']['valor']:<10} ¦ "
-                + f"{data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]:<10}"
-            )
+            print(data_v[6:8] + "-" + data_v[4:6] + "-")
+            
             for cpf_dep, dep in item["terceiros"].items():
                 data_dep = str(dep["data_nascimento"])
                 data_dep = f"{data_dep[6:8]}-{data_dep[4:6]}-{data_dep[0:4]}"
