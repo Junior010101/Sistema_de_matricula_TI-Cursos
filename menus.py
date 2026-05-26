@@ -490,8 +490,7 @@ def cadastrar_cliente():
 # thiago layme
 def editar_cliente():
     editar = ler_arquivo()
-
-    cpf = input("Informe o CPF que deseja alterar (000.000.000-00): ")
+    cpf = gerar_menu_pergunta("informe o CPF do cliente que você deseja alterar")
     cpf, erro = validar_cpf(cpf)
     if cpf is None:
         print(erro)
@@ -506,12 +505,10 @@ def editar_cliente():
             + "\n6 - Nome de terceiros"
             + "\n7 - Data de nascimento de terceiros"
         )
-        quero_editar = input("Informe o número do dado que você quer editar: ")
-
+        quero_editar = gerar_menu_pergunta("Informe o número do que você quer editar", ["1 - Nome                       ", "2 - Sexo                       ", "3 - E-mail                     ", "4 - Data de Nascimento         ", "5 - Telefone                   ", "6 - Nome de terceiros          ", "7 - Dt. nascimento de terceiros"])
         match quero_editar:
             case "1":
-                apenasletras = input("Informe o novo nome: ")
-
+                apenasletras = gerar_menu_pergunta("Informe o novo nome")
                 if apenasletras.replace(" ", "").isalpha():
                     editar[cpf]["nome"] = apenasletras
                     print("Alteração feita com sucesso!")
@@ -519,7 +516,7 @@ def editar_cliente():
                     print("Erro! Caracter Inválido")
 
             case "2":
-                mudarsexo = input("Digite 1- Fem ou 2- Masc: ")
+                mudarsexo = gerar_menu_pergunta("Digite o número para seu novo sexo", ["1 - feminino", "2 - masculino"])
 
                 if mudarsexo == "1":
                     editar[cpf]["sexo"] = "fem"
@@ -534,13 +531,11 @@ def editar_cliente():
                 vencimento(editar)
 
             case "3":
-                editar[cpf]["email"] = input("Informe o novo E-mail: ")
+                editar[cpf]["email"] = gerar_menu_pergunta("Informe o novo E-mail: ")
                 print("Alteração feita com sucesso!")
 
             case "4":
-                apenasnumeros = input(
-                    "Informe a nova data de nascimento (dd-mm-aaaa): "
-                )
+                apenasnumeros = gerar_menu_pergunta("Informe a nova data de nascimento (dd-mm-aaaa): ")
 
                 if apenasnumeros.isdigit():
                     editar[cpf]["data_nascimento"] = apenasnumeros
@@ -552,7 +547,7 @@ def editar_cliente():
                 vencimento(editar)
 
             case "5":
-                apenasnumeros = input("Informe o novo telefone: ")
+                apenasnumeros = gerar_menu_pergunta("Informe o novo telefone: ")
 
                 if apenasnumeros.isdigit():
                     editar[cpf]["telefone"] = apenasnumeros
@@ -561,10 +556,10 @@ def editar_cliente():
                     print("Erro! Caracter Inválido")
 
             case "6":
-                quero_editar2 = input(
+                quero_editar2 = gerar_menu_pergunta(
                     "Informe o CPF do dependente que você quer editar: "
                 )
-                nome_com_apenas_letras = input(
+                nome_com_apenas_letras = gerar_menu_pergunta(
                     "Informe o novo nome do dependente: ",
                 )
 
@@ -577,10 +572,10 @@ def editar_cliente():
                     print("Erro! Caracter Inválido")
 
             case "7":
-                quero_editar2 = input(
+                quero_editar2 = gerar_menu_pergunta(
                     "Informe o CPF do dependente que você quer editar: "
                 )
-                apenasnumeros = input(
+                apenasnumeros = gerar_menu_pergunta(
                     "Informe a nova data de nascimento (dd-mm-aaaa): "
                 )
                 data_nascimento, erro = validar_data_nascimento(apenasnumeros)
@@ -655,14 +650,8 @@ def remover():
 # Ximenes
 def lps():
     dados = ler_arquivo()
-    plano = input(
-        "Informe o plano de saúde que deseja listar os clientes: "
-        "\n1 - Diamante"
-        "\n2 - Ouro"
-        "\n3 - Prata"
-        "\n4 - Esmeralda\n"
-        "\n\nEscolha: "
-    )
+    plano = gerar_menu_pergunta("Informe o plano de saúde que deseja listar os clientes: ", ["1 - Diamante ", "2 - Ouro     ", "3 - Prata    ", "4 - Esmeralda", "Escolha:     "])
+    
     planos = {"1": 1, "2": 2, "3": 3, "4": 4}
     esc = planos[plano]
 
