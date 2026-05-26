@@ -697,15 +697,15 @@ def lps():
         print(
             
             "\033[30;47m"
-            + f"{"CPF":<14}¦ "
-            + f"{"Nome":<20}¦ "
-            + f"{"Sexo":<6}¦ "
-            + f"{"idade":<6}¦ "
-            + f"{"E-mail":<27}¦ "
-            + f"{"Data Nasc.":<11}¦ "
-            + f"{"Telefone":<12}¦ "
-            + f"{"Plano":<10}¦ "
-            + f"{"Valor":<10}¦"
+            + f"{"CPF":<14}│ "
+            + f"{"Nome":<20}│ "
+            + f"{"Sexo":<6}│ "
+            + f"{"idade":<6}│ "
+            + f"{"E-mail":<27}│ "
+            + f"{"Data Nasc.":<11}│ "
+            + f"{"Telefone":<12}│ "
+            + f"{"Plano":<10}│ "
+            + f"{"Valor":<10}│"
             + f"{"Data venc.":<11}"
             + "\033[0m"
         )
@@ -722,15 +722,15 @@ def lps():
             if item["plano_saude"]["plano"] == "Diamante":
                 print(
                     "\033[30;47m"
-                    + f"{chave:<14}¦ "
-                    + f"{item['nome']:<20}¦ "
-                    + f"{item['sexo']:<6}¦ "
-                    + f"{str(idade):<5} ¦ "
-                    + f"{item['email']:<27}¦ "
-                    + f"{str(data_n):<11}¦ "
-                    + f"{item['telefone']:<12}¦ "
-                    + f"{item['plano_saude']['plano']:<10}¦ "
-                    + f"{item['plano_saude']['valor']:<11.2f}¦"
+                    + f"{chave:<14}│ "
+                    + f"{item['nome']:<20}│ "
+                    + f"{item['sexo']:<6}│ "
+                    + f"{str(idade):<5} │ "
+                    + f"{item['email']:<27}│ "
+                    + f"{str(data_n):<11}│ "
+                    + f"{item['telefone']:<12}│ "
+                    + f"{item['plano_saude']['plano']:<10}│ "
+                    + f"{item['plano_saude']['valor']:<11.2f}│"
                     + f"{str(data_v):<10}"
                     + "\033[0m"
                 )
@@ -759,15 +759,15 @@ def lps():
         print("Ouro")
         print(
             "\033[30;47m"
-            + f"{"CPF":<14}¦ "
-            + f"{"Nome":<20}¦ "
-            + f"{"Sexo":<6}¦ "
-            + f"{"idade":<6}¦ "
-            + f"{"E-mail":<27}¦ "
-            + f"{"Data Nasc.":<11}¦ "
-            + f"{"Telefone":<12}¦ "
-            + f"{"Plano":<10}¦ "
-            + f"{"Valor":<10}¦ "
+            + f"{"CPF":<14}│ "
+            + f"{"Nome":<20}│ "
+            + f"{"Sexo":<6}│ "
+            + f"{"idade":<6}│ "
+            + f"{"E-mail":<27}│ "
+            + f"{"Data Nasc.":<11}│ "
+            + f"{"Telefone":<12}│ "
+            + f"{"Plano":<10}│ "
+            + f"{"Valor":<10}│ "
             + f"{"Data venc.":<11}"
             + "\033[0m"
         )
@@ -784,15 +784,15 @@ def lps():
             if item["plano_saude"]["plano"] == "Ouro":
                 print(
                     "\033[30;47m"
-                    + f"{chave:<14}¦ "
-                    + f"{item['nome']:<20}¦ "
-                    + f"{item['sexo']:<6}¦ "
-                    + f"{str(idade):<5} ¦ "
-                    + f"{item['email']:<27}¦ "
-                    + f"{str(data_n):<11}¦ "
-                    + f"{item['telefone']:<12}¦ "
-                    + f"{item['plano_saude']['plano']:<10}¦ "
-                    + f"{item['plano_saude']['valor']:<10.2f}¦ "
+                    + f"{chave:<14}│ "
+                    + f"{item['nome']:<20}│ "
+                    + f"{item['sexo']:<6}│ "
+                    + f"{str(idade):<5} │ "
+                    + f"{item['email']:<27}│ "
+                    + f"{str(data_n):<11}│ "
+                    + f"{item['telefone']:<12}│ "
+                    + f"{item['plano_saude']['plano']:<10}│ "
+                    + f"{item['plano_saude']['valor']:<10.2f}│ "
                     + f"{str(data_v):<11}"
                     + "\033[0m"
                 )
@@ -826,15 +826,15 @@ def lps():
         print("Prata")
         print(
             "\033[30;47m"
-            + f"{"CPF":<14}¦ "
-            + f"{"Nome":<20}¦ "
-            + f"{"Sexo":<6}¦ "
-            + f"{"idade":<6}¦ "
-            + f"{"E-mail":<27}¦ "
-            + f"{"Data Nasc.":<11}¦ "
-            + f"{"Telefone":<12}¦ "
-            + f"{"Plano":<10}¦ "
-            + f"{"Valor":<10}¦ "
+            + f"{"CPF":<14}│ "
+            + f"{"Nome":<20}│ "
+            + f"{"Sexo":<6}│ "
+            + f"{"idade":<6}│ "
+            + f"{"E-mail":<27}│ "
+            + f"{"Data Nasc.":<11}│ "
+            + f"{"Telefone":<12}│ "
+            + f"{"Plano":<10}│ "
+            + f"{"Valor":<10}│ "
             + f"{"Data venc.":<11}"
             + "\033[0m"
         )
@@ -851,15 +851,15 @@ def lps():
             if item["plano_saude"]["plano"] == "Prata":
                 print(
                     "\033[30;47m"
-                    + f"{chave:<14}¦ "
-                    + f"{item['nome']:<20}¦ "
-                    + f"{item['sexo']:<6}¦ "
-                    + f"{str(idade):<5} ¦ "
-                    + f"{item['email']:<27}¦ "
-                    + f"{str(data_n):<11}¦ "
-                    + f"{item['telefone']:<12}¦ "
-                    + f"{item['plano_saude']['plano']:<10}¦ "
-                    + f"{item['plano_saude']['valor']:<10.2f}¦ "
+                    + f"{chave:<14}│ "
+                    + f"{item['nome']:<20}│ "
+                    + f"{item['sexo']:<6}│ "
+                    + f"{str(idade):<5} │ "
+                    + f"{item['email']:<27}│ "
+                    + f"{str(data_n):<11}│ "
+                    + f"{item['telefone']:<12}│ "
+                    + f"{item['plano_saude']['plano']:<10}│ "
+                    + f"{item['plano_saude']['valor']:<10.2f}│ "
                     + f"{str(data_v):<11}"
                     + "\033[0m"
                 )
@@ -888,15 +888,15 @@ def lps():
         print("Esmeralda")
         print(
             "\033[30;47m"
-            + f"{"CPF":<14}¦ "
-            + f"{"Nome":<20}¦ "
-            + f"{"Sexo":<6}¦ "
-            + f"{"idade":<6}¦ "
-            + f"{"E-mail":<27}¦ "
-            + f"{"Data Nasc.":<11}¦ "
-            + f"{"Telefone":<12}¦ "
-            + f"{"Plano":<10}¦ "
-            + f"{"Valor":<10}¦ "
+            + f"{"CPF":<14}│ "
+            + f"{"Nome":<20}│ "
+            + f"{"Sexo":<6}│ "
+            + f"{"idade":<6}│ "
+            + f"{"E-mail":<27}│ "
+            + f"{"Data Nasc.":<11}│ "
+            + f"{"Telefone":<12}│ "
+            + f"{"Plano":<10}│ "
+            + f"{"Valor":<10}│ "
             + f"{"Data venc.":<11}"
             + "\033[0m"
         )
@@ -913,15 +913,15 @@ def lps():
             if item["plano_saude"]["plano"] == "Esmeralda":
                 print(
                     "\033[30;47m"
-                    + f"{chave:<14}¦ "
-                    + f"{item['nome']:<20}¦ "
-                    + f"{item['sexo']:<6}¦ "
-                    + f"{str(idade):<5} ¦ "
-                    + f"{item['email']:<27}¦ "
-                    + f"{str(data_n):<11}¦ "
-                    + f"{item['telefone']:<12}¦ "
-                    + f"{item['plano_saude']['plano']:<10}¦ "
-                    + f"{item['plano_saude']['valor']:<10.2f}¦ "
+                    + f"{chave:<14}│ "
+                    + f"{item['nome']:<20}│ "
+                    + f"{item['sexo']:<6}│ "
+                    + f"{str(idade):<5} │ "
+                    + f"{item['email']:<27}│ "
+                    + f"{str(data_n):<11}│ "
+                    + f"{item['telefone']:<12}│ "
+                    + f"{item['plano_saude']['plano']:<10}│ "
+                    + f"{item['plano_saude']['valor']:<10.2f}│ "
                     + f"{str(data_v):<11}"
                     + "\033[0m"
                 )
@@ -936,69 +936,75 @@ def listagem_geral():
         input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
         return
 
+    # CABEÇALHO
     print(
         "\033[30;47m"
-        + f"{"Tipos":<12}¦ "
-        + f"{"CPF":<15}¦ "
-        + f"{"Nome":<21}¦ "
-        + f"{"Sexo":<6}¦ "
-        + f"{"idade":<6}¦ "
-        + f"{"E-mail":<27}¦ "
-        + f"{"Data Nasc.":<11}¦ "
-        + f"{"Telefone":<12}¦ "
-        + f"{"Plano":<11}¦ "
-        + f"{"Valor":<11}¦ "
-        + f"{"Data venc.":<12}"
+        + f"{'Tipos':<12}│"
+        + f"{'CPF':<15}│"
+        + f"{'Nome':<22}│"
+        + f"{'Sexo':<7}│"
+        + f"{'Idade':<7}│"
+        + f"{'E-mail':<30}│"
+        + f"{'Data Nasc.':<12}│"
+        + f"{'Telefone':<13}│"
+        + f"{'Plano':<12}│"
+        + f"{'Valor':<10}│"
+        + f"{'Data Venc.':<12}"
         + "\033[0m"
     )
-    
-    print("\033[30;47m" + "-" * 164 + "\033[0m")
 
+    print("\033[30;47m" + "-" * 162 + "\033[0m")
 
     for chave, item in dados.items():
         data_v = str(item["plano_saude"]["data_vencimento"])
+        data_v = f"{data_v[6:8]}-{data_v[4:6]}-{data_v[0:4]}"
         data_n = str(item["data_nascimento"])
-        data_n = f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]}"
+        data_n = f"{data_n[6:8]}-{data_n[4:6]}-{data_n[0:4]}"
         _, idade = validar_data_nascimento(data_n)
         titular = "Titular" if item["titular"] else "Dependente"
 
+        # TITULAR
         print(
             "\033[30;47m"
-            + f"{titular:<12}¦ "
-            + f"{chave:<14} ¦ "
-            + f"{item['nome']:<20} ¦ "
-            + f"{item['sexo']:<5} ¦ "
-            + f"{str(idade):<5} ¦ "
-            + f"{item['email']:<25} ¦ "
-            + f"{data_n:<10} ¦ "
-            + f"{item['telefone']:<10} ¦ "
-            + f"{item['plano_saude']['plano']:<10} ¦ "
-            + f"{item['plano_saude']['valor']:<10.2f} ¦ "
-            + f"{data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]:<12}"
-            +"\033[30;0m"
+            + f"{titular:<12}│"
+            + f"{chave:<15}│"
+            + f"{item['nome']:<22}│"
+            + f"{item['sexo']:<7}│"
+            + f"{idade:<7}│"
+            + f"{item['email']:<30}│"
+            + f"{data_n:<12}│"
+            + f"{item['telefone']:<13}│"
+            + f"{item['plano_saude']['plano']:<12}│"
+            + f"{item['plano_saude']['valor']:<10.2f}│"
+            + f"{data_v:<12}"
+            + "\033[0m"
         )
+
+        # DEPENDENTES
         for cpf_dep, dep in item["terceiros"].items():
+
             data_dep = str(dep["data_nascimento"])
             data_dep = f"{data_dep[6:8]}-{data_dep[4:6]}-{data_dep[0:4]}"
+
             _, idade_dep = validar_data_nascimento(data_dep)
 
             print(
                 "\033[30;47m"
-                + f"{'Dependente':<12}¦ "
-                + f"{cpf_dep:<14} ¦ "
-                + f"{dep['nome']:<20} ¦ "
-                + f"{dep['sexo']:<5} ¦ "
-                + f"{str(idade_dep):<5} ¦ "
-                + f"{'----':<26} ¦ "
-                + f"{data_dep:<10} ¦ "
-                + f"{'----':<11} ¦ "
-                + f"{dep['plano']:<10} ¦ "
-                + f"{item['plano_saude']['valor']:<10.2f} ¦ "
-                + f"{data_v[6:8] + '-' + data_v[4:6] + '-' + data_v[0:4]:<12}"
-                +"\033[30;0m"
+                + f"{'Dependente':<12}│"
+                + f"{cpf_dep:<15}│"
+                + f"{dep['nome']:<22}│"
+                + f"{dep['sexo']:<7}│"
+                + f"{idade_dep:<7}│"
+                + f"{'----':<30}│"
+                + f"{data_dep:<12}│"
+                + f"{'----':<13}│"
+                + f"{dep['plano']:<12}│"
+                + f"{item['plano_saude']['valor']:<10.2f}│"
+                + f"{data_v:<12}"
+                + "\033[0m"
             )
 
-            print("\033[30;47m" + "-" * 164 + "\033[0m")
+        print("\033[30;47m" + "-" * 162 + "\033[0m")
 
     input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
 
@@ -1020,14 +1026,14 @@ def data_por_vecimento():
 
     print(
         "\033[30;47m"
-        + f"{"CPF":<17}¦ "
-        + f"{"Nome":<21}¦ "
-        + f"{"Sexo":<6}¦ "
-        + f"{"idade":<6}¦ "
-        + f"{"E-mail":<31}¦ "
-        + f"{"Data venc.":<11}¦ "
-        + f"{"Telefone":<12}¦ "
-        + f"{"Plano":<11}¦"
+        + f"{"CPF":<17}│ "
+        + f"{"Nome":<21}│ "
+        + f"{"Sexo":<6}│ "
+        + f"{"idade":<6}│ "
+        + f"{"E-mail":<31}│ "
+        + f"{"Data venc.":<11}│ "
+        + f"{"Telefone":<12}│ "
+        + f"{"Plano":<11}│"
         + f"{"Valor":<11}"
         + "\033[0m"
     )
@@ -1041,14 +1047,14 @@ def data_por_vecimento():
 
         print(
             "\033[30;47m"
-            + f"{chave:<16} ¦ "
-            + f"{item['nome']:<20} ¦ "
-            + f"{item['sexo']:<5} ¦ "
-            + f"{str(idade):<5} ¦ "
-            + f"{item['email']:<30} ¦ "
-            + f"{data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]:<10} ¦ "
-            + f"{item['telefone']:<10} ¦ "
-            + f"{item['plano_saude']['plano']:<10} ¦ "
+            + f"{chave:<16} │ "
+            + f"{item['nome']:<20} │ "
+            + f"{item['sexo']:<5} │ "
+            + f"{str(idade):<5} │ "
+            + f"{item['email']:<30} │ "
+            + f"{data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]:<10} │ "
+            + f"{item['telefone']:<10} │ "
+            + f"{item['plano_saude']['plano']:<10} │ "
             + f"{item['plano_saude']['valor']:<10.2f}"
             + "\033[0m"
         )
@@ -1072,15 +1078,15 @@ def cpf():
 
     print(
         "\033[30;47m"
-        + f"{"Tipos":<12}¦ "
-        + f"{"Nome":<20}¦ "
-        + f"{"Sexo":<6}¦ "
-        + f"{"idade":<6}¦ "
-        + f"{"E-mail":<31}¦ "
-        + f"{"Data nasc.":<13}¦ "
-        + f"{"Telefone":<12}¦ "
-        + f"{"Plano":<11}¦ "
-        + f"{"Valor":<11}¦ "
+        + f"{"Tipos":<12}│ "
+        + f"{"Nome":<20}│ "
+        + f"{"Sexo":<6}│ "
+        + f"{"idade":<6}│ "
+        + f"{"E-mail":<31}│ "
+        + f"{"Data nasc.":<13}│ "
+        + f"{"Telefone":<12}│ "
+        + f"{"Plano":<11}│ "
+        + f"{"Valor":<11}│ "
         + f"{"Data venc.":<11}"
         + "\033[0m"
     )
@@ -1096,15 +1102,15 @@ def cpf():
         if chave == cpf:
             print(
                 "\033[30;47m"
-                + f"{'titular':<12}¦ "
-                + f"{item['nome']:<19} ¦ "
-                + f"{item['sexo']:<5} ¦ "
-                + f"{str(idade):<5} ¦ "
-                + f"{item['email']:<30} ¦ "
-                + f"{data_n:<12} ¦ "
-                + f"{item['telefone']:<11} ¦ "
-                + f"{item['plano_saude']['plano']:<10} ¦ "
-                + f"{item['plano_saude']['valor']:<10.2f} ¦ "
+                + f"{'titular':<12}│ "
+                + f"{item['nome']:<19} │ "
+                + f"{item['sexo']:<5} │ "
+                + f"{str(idade):<5} │ "
+                + f"{item['email']:<30} │ "
+                + f"{data_n:<12} │ "
+                + f"{item['telefone']:<11} │ "
+                + f"{item['plano_saude']['plano']:<10} │ "
+                + f"{item['plano_saude']['valor']:<10.2f} │ "
                 + f"{data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]:<11}"
                 + "\033[30;0m"
             )
@@ -1116,15 +1122,15 @@ def cpf():
             print(
 
                 "\033[30;47m"
-                + f"{'Dependente':<12}¦ "
-                + f"{dep['nome']:<19} ¦ "
-                + f"{dep['sexo']:<5} ¦ "
-                + f"{str(idade_dep):<5} ¦ "
-                + f"{'----':<30} ¦ "
-                + f"{data_dep:<11} ¦ "
-                + f"{'----':<12} ¦ "
-                + f"{dep['plano']:<10} ¦ "
-                + f"{item['plano_saude']['valor']:<10.2f} ¦ "
+                + f"{'Dependente':<12}│ "
+                + f"{dep['nome']:<19} │ "
+                + f"{dep['sexo']:<5} │ "
+                + f"{str(idade_dep):<5} │ "
+                + f"{'----':<30} │ "
+                + f"{data_dep:<12} │ "
+                + f"{'----':<11} │ "
+                + f"{dep['plano']:<10} │ "
+                + f"{item['plano_saude']['valor']:<10.2f} │ "
                 + f"{data_v[6:8] + '-' + data_v[4:6] + '-' + data_v[0:4]:<11}"
                 + "\033[30;0m"
             )
