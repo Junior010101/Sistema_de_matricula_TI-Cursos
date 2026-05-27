@@ -348,8 +348,6 @@ def cadastrar_cliente():
                 )
                 return
 
-            print("Para cadastrar um novo dependente no seu plano:")
-
             while True:
                 cpf_dep = gerar_menu_pergunta(
                     ""
@@ -712,22 +710,18 @@ def lps():
         "\n\nEscolha: "
     )
     planos = {"1": 1, "2": 2, "3": 3, "4": 4}
-    
 
     if plano not in planos:
         print("você digitou algo de errado")
         input(
-                "\n\033[38;2;143;0;255m"
-                + "Pressione enter para continuar..."
-                + "\033[0m"
+            "\n\033[38;2;143;0;255m" + "Pressione enter para continuar..." + "\033[0m"
         )
         return
-    
+
     esc = planos[plano]
-    
+
     if esc == 1:
         count = 0
-
 
         for _, item in dados.items():
             if item["plano_saude"]["plano"] == "Diamante":
@@ -748,7 +742,6 @@ def lps():
 
         print("Diamante")
         print(
-            
             "\033[30;47m"
             + f"{"CPF":<14}│ "
             + f"{"Nome":<20}│ "
@@ -959,7 +952,7 @@ def lps():
             data_n = str(item["data_nascimento"])
             data_n = data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]
             _, idade = validar_data_nascimento(data_n)
-            
+
             data_v = str(item["plano_saude"]["data_vencimento"])
             data_v = data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]
 
@@ -1009,7 +1002,7 @@ def listagem_geral():
 
     for chave, item in dados.items():
         data_v = str(item["plano_saude"]["data_vencimento"])
-        
+
         data_n = str(item["data_nascimento"])
         data_n = f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]}"
         _, idade = validar_data_nascimento(data_n)
@@ -1030,7 +1023,7 @@ def listagem_geral():
             + f"{data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]:<12}"
             + "\033[0m"
         )
-        
+
         for cpf_dep, dep in item["terceiros"].items():
             data_dep = str(dep["data_nascimento"])
             data_dep = f"{data_dep[6:8] + "-" + data_dep[4:6] + "-" + data_dep[0:4]}"
@@ -1112,14 +1105,13 @@ def data_por_vecimento():
 def cpf():
     dados = ler_arquivo()
 
-
     cpf = gerar_menu_pergunta("Digite seu CPF (000.000.000-00): ")
     cpf, err = validar_cpf(cpf)
     if cpf is None:
         print(err)
         input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
         return
-    if  cpf not in dados:
+    if cpf not in dados:
         print("Não tem nada aqui não!!")
         input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
         return
@@ -1142,7 +1134,7 @@ def cpf():
 
     for chave, item in dados.items():
         data_v = str(item["plano_saude"]["data_vencimento"])
-        data_n = str(item["data_nascimento"]) #2000 10 10 data_n[6:8]
+        data_n = str(item["data_nascimento"])  # 2000 10 10 data_n[6:8]
         data_n = f"{data_n[6:8] + "-" + data_n[4:6] + "-" + data_n[0:4]}"
         _, idade = validar_data_nascimento(data_n)
         titular = "Titular" if item["titular"] else "Dependente"
@@ -1168,7 +1160,6 @@ def cpf():
                 _, idade_dep = validar_data_nascimento(data_dep)
 
             print(
-
                 "\033[30;47m"
                 + f"{'Dependente':<12}│ "
                 + f"{dep['nome']:<19} │ "
