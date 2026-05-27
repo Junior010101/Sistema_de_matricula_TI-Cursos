@@ -499,13 +499,18 @@ def editar_cliente():
         limpar_tela()
         cpf = gerar_menu_pergunta("Informe o CPF que deseja alterar (000.000.000-00): ")
         cpf, erro = validar_cpf(cpf)
+
         if cpf is None:
             print(erro)
             o = input("pressione enter para continuar...")
+            limpar_tela()
+            return
+
         elif cpf in editar:
             while True:
                 limpar_tela()
                 quero_editar = gerar_menu_pergunta("Informe o número do dado que você quer editar: ",["1 - Nome","2 - Sexo","3 - E-mail","4 - Data de Nasc.","5 - Telefone","6 - Nome de depen.","7 - Data.nasc. depen."])
+
                 match quero_editar:
                     case "1":
                         while True:
@@ -514,33 +519,61 @@ def editar_cliente():
 
                             if apenasletras.replace(" ", "").isalpha():
                                 editar[cpf]["nome"] = apenasletras
-                                print("Alteração feita com sucesso!");o = input("pressione enter para continuar...");break
+
+                                salvar_arquivo(editar)
+                                print("Alteração feita com sucesso!")
+                                o = input("pressione enter para continuar...")
+                                limpar_tela()
+                                return
+
                             else:
-                                print("Erro! Caracter Inválido");o = input("pressione enter para continuar...")
-                        break
+                                print("Erro! Caracter Inválido")
+                                o = input("pressione enter para continuar...")
+                                limpar_tela()
+                                return
+
                     case "2":
                         while True:
                             limpar_tela()
                             mudarsexo = gerar_menu_pergunta("informe o sexo:",["1- Fem","2- Masc: "])
+
                             if mudarsexo == "1":
                                 editar[cpf]["sexo"] = "fem"
+
+                                calculo(editar)
+                                vencimento(editar)
+                                salvar_arquivo(editar)
                                 print("Alteração feita com sucesso!")
                                 o = input("pressione enter para continuar...")
-                                break
+                                limpar_tela()
+                                return
+
                             elif mudarsexo == "2":
                                 editar[cpf]["sexo"] = "masc"
-                                print("Alteração feita com sucesso!");o = input("pressione enter para continuar...");break
+
+                                calculo(editar)
+                                vencimento(editar)
+                                salvar_arquivo(editar)
+                                print("Alteração feita com sucesso!")
+                                o = input("pressione enter para continuar...")
+                                limpar_tela()
+                                return
+
                             else:
-                                print("Opção Inválida!");o = input("pressione enter para continuar...")
-                        calculo(editar)
-                        vencimento(editar)
-                        salvar_arquivo(editar)
-                        break
+                                print("Opção Inválida!")
+                                o = input("pressione enter para continuar...")
+                                limpar_tela()
+                                return
+
                     case "3":
                         limpar_tela()
-                        editar[cpf]["email"] = gerar_menu_pergunta ("Informe o novo E-mail: ")
-                        print("Alteração feita com sucesso!");o = input("pressione enter para continuar...");break
+                        editar[cpf]["email"] = gerar_menu_pergunta("Informe o novo E-mail: ")
+                        
                         salvar_arquivo(editar)
+                        print("Alteração feita com sucesso!")
+                        o = input("pressione enter para continuar...")
+                        limpar_tela()
+                        return
 
                     case "4":
                         while True:
@@ -549,14 +582,23 @@ def editar_cliente():
                             listaD_n = apenasnumeros.split("-")
 
                             if listaD_n[0].isdigit() and listaD_n[1].isdigit() and listaD_n[2].isdigit():
-                                editar[cpf]["data_nascimento"] = int(str(listaD_n[2])+str(listaD_n[1])+str(listaD_n[1]))
-                                print("Alteração feita com sucesso!");o = input("pressione enter para continuar...");break
+                                editar[cpf]["data_nascimento"] = int(str(listaD_n[2]) + str(listaD_n[1]) + str(listaD_n[0]))
+
+                                calculo(editar)
+                                vencimento(editar)
+                                salvar_arquivo(editar)
+                                print("Alteração feita com sucesso!")
+                                o = input("pressione enter para continuar...")
+                                limpar_tela()
+                                return
+
                             else:
-                                print("Erro! Caracter Inválido");o = input("pressione enter para continuar...")
-                        calculo(editar)
-                        vencimento(editar)
-                        salvar_arquivo(editar)
-                        break
+                                limpar_tela()
+                                print("Erro! Caracter Inválido")
+                                o = input("pressione enter para continuar...")
+                                limpar_tela()
+                                return
+
                     case "5":
                         while True:
                             limpar_tela()
@@ -564,57 +606,85 @@ def editar_cliente():
 
                             if apenasnumeros.isdigit():
                                 editar[cpf]["telefone"] = apenasnumeros
-                                print("Alteração feita com sucesso!");o = input("pressione enter para continuar...");break
+
+                                salvar_arquivo(editar)
+                                print("Alteração feita com sucesso!")
+                                o = input("pressione enter para continuar...")
+                                limpar_tela()
+                                return
+
                             else:
-                                print("Erro! Caracter Inválido");o = input("pressione enter para continuar...")
-                        salvar_arquivo(editar)
-                        break
+                                limpar_tela()
+                                print("Erro! Caracter Inválido")
+                                o = input("pressione enter para continuar...")
+                                limpar_tela()
+                                return
+
                     case "6":
                         while True:
                             limpar_tela()
+
                             quero_editar2 = gerar_menu_pergunta(
                                 "Informe o CPF do dependente que você quer editar: "
                             )
+
                             nome_com_apenas_letras = gerar_menu_pergunta(
                                 "Informe o novo nome do dependente: ",
                             )
-                            
+
                             if nome_com_apenas_letras.isalpha():
                                 editar[cpf]["terceiros"][quero_editar2]["nome"] = nome_com_apenas_letras
-                                print("Alteração feita com sucesso!");o = input("pressione enter para continuar...");break
+                                
+                                salvar_arquivo(editar)
+                                print("Alteração feita com sucesso!")
+                                o = input("pressione enter para continuar...")
+                                limpar_tela()
+                                return
+
                             else:
-                                print("Erro! Caracter Inválido");o = input("pressione enter para continuar...")
-                        salvar_arquivo(editar)
-                        break
+                                print("Erro! Caracter Inválido")
+                                o = input("pressione enter para continuar...")
+                                limpar_tela()
+                                return
+
                     case "7":
                         while True:
                             limpar_tela()
+
                             quero_editar2 = gerar_menu_pergunta(
                                 "Informe o CPF do dependente que você quer editar: "
                             )
+
                             apenasnumeros = gerar_menu_pergunta(
                                 "Informe a nova data de nascimento (dd-mm-aaaa): "
                             )
+
                             data_nascimento, erro = validar_data_nascimento(apenasnumeros)
 
                             if data_nascimento is None:
                                 print(erro)
-                            editar[cpf]["terceiros"][quero_editar2][
-                                "data_nascimento"
-                            ] = data_nascimento
-                            print("Alteração feita com sucesso!");o = input("pressione enter para continuar...");break
-                        salvar_arquivo(editar)
-                        break
+                                o = input("pressione enter para continuar...")
+                                limpar_tela()
+                                return
+                            else:
+                                editar[cpf]["terceiros"][quero_editar2]["data_nascimento"] = data_nascimento
+
+                                salvar_arquivo(editar)
+                                print("Alteração feita com sucesso!")
+                                o = input("pressione enter para continuar...")
+                                limpar_tela()
+                                return
+
                     case _:
                         print("Opção Invalida.\n")
                         o = input("pressione enter para continuar...")
-                
-
+                        limpar_tela()
+                        return
         else:
             print("Desculpe, o CPF informado não foi encontrado!")
             o = input("pressione enter para continuar...")
-    
-
+            limpar_tela()
+            return
 # Marcos
 def remover():
     dados = ler_arquivo()
