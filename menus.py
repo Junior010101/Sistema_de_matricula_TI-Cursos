@@ -1,7 +1,12 @@
 from logica import calculo, validar_cpf, validar_data_nascimento, vencimento
 from percistencia import ler_arquivo, salvar_arquivo
+from os import name, system
 
-
+def limpar_tela():
+    if name == "nt":
+        system("cls")
+    else:
+        system("clear")
 def gerar_menu_pergunta(pergunta, opcoes=None):
     AMARELO = "\033[33m"
     CIANO = "\033[36m"
@@ -489,155 +494,126 @@ def cadastrar_cliente():
 
 # thiago layme
 def editar_cliente():
-    editar = ler_arquivo()
+    while True:
+        editar = ler_arquivo()
+        limpar_tela()
+        cpf = gerar_menu_pergunta("Informe o CPF que deseja alterar (000.000.000-00): ")
+        cpf, erro = validar_cpf(cpf)
+        if cpf is None:
+            print(erro)
+            o = input("pressione enter para continuar...")
+        elif cpf in editar:
+            while True:
+                limpar_tela()
+                quero_editar = gerar_menu_pergunta("Informe o número do dado que você quer editar: ",["1 - Nome","2 - Sexo","3 - E-mail","4 - Data de Nasc.","5 - Telefone","6 - Nome de depen.","7 - Data.nasc. depen."])
+                match quero_editar:
+                    case "1":
+                        while True:
+                            limpar_tela()
+                            apenasletras = gerar_menu_pergunta("Informe o novo nome: ")
 
-    cpf = gerar_menu_pergunta(
-        "Digite o CPF do cliente que deseja "
-        + "alterar nesse formato: (000.000.000-00)"
-    )
-    cpf, erro = validar_cpf(cpf)
-    if cpf is None:
-        print("\033[31m" + erro)
-        input(
-            "\n"
-            + "\033[38;2;143;0;255m"
-            + "Pressione enter para continuar..."
-            + "\033[0m"
-        )
-        return
+                            if apenasletras.replace(" ", "").isalpha():
+                                editar[cpf]["nome"] = apenasletras
+                                print("Alteração feita com sucesso!");o = input("pressione enter para continuar...");break
+                            else:
+                                print("Erro! Caracter Inválido");o = input("pressione enter para continuar...")
+                        break
+                    case "2":
+                        while True:
+                            limpar_tela()
+                            mudarsexo = gerar_menu_pergunta("informe o sexo:",["1- Fem","2- Masc: "])
+                            if mudarsexo == "1":
+                                editar[cpf]["sexo"] = "fem"
+                                print("Alteração feita com sucesso!")
+                                o = input("pressione enter para continuar...")
+                                break
+                            elif mudarsexo == "2":
+                                editar[cpf]["sexo"] = "masc"
+                                print("Alteração feita com sucesso!");o = input("pressione enter para continuar...");break
+                            else:
+                                print("Opção Inválida!");o = input("pressione enter para continuar...")
+                        calculo(editar)
+                        vencimento(editar)
+                        salvar_arquivo(editar)
+                        break
+                    case "3":
+                        limpar_tela()
+                        editar[cpf]["email"] = gerar_menu_pergunta ("Informe o novo E-mail: ")
+                        print("Alteração feita com sucesso!");o = input("pressione enter para continuar...");break
+                        salvar_arquivo(editar)
 
-    if cpf in editar:
-        quero_editar = gerar_menu_pergunta(
-            "Informe o número do que você quer editar",
-            [
-                "\b\b1 - Nome              ",
-                "\b\b2 - Sexo              ",
-                "\b\b3 - E-mail            ",
-                "\b\b4 - Data de Nascimento",
-                "\b\b5 - Telefone          ",
-                "\b\b6 - Nome de terceiros ",
-                "\b\b7 - Dt. nascimento de terceiros\b\b\b\b\b\b\b\b\b",
-            ],
-        )
-        match quero_editar:
-            case "1":
-                apenasletras = gerar_menu_pergunta("Informe o novo nome.")
+                    case "4":
+                        while True:
+                            limpar_tela()
+                            apenasnumeros = gerar_menu_pergunta("Informe a nova data de nascimento (dd-mm-aaaa): ")
+                            listaD_n = apenasnumeros.split("-")
 
-                if apenasletras.replace(" ", "").isalpha():
-                    editar[cpf]["nome"] = apenasletras
-                    print("Alteração feita com sucesso!")
-                else:
-                    print("Erro! Caracter Inválido")
-                    return
+                            if listaD_n[0].isdigit() and listaD_n[1].isdigit() and listaD_n[2].isdigit():
+                                editar[cpf]["data_nascimento"] = int(str(listaD_n[2])+str(listaD_n[1])+str(listaD_n[1]))
+                                print("Alteração feita com sucesso!");o = input("pressione enter para continuar...");break
+                            else:
+                                print("Erro! Caracter Inválido");o = input("pressione enter para continuar...")
+                        calculo(editar)
+                        vencimento(editar)
+                        salvar_arquivo(editar)
+                        break
+                    case "5":
+                        while True:
+                            limpar_tela()
+                            apenasnumeros = gerar_menu_pergunta("Informe o novo telefone: ")
 
-            case "2":
-                mudarsexo = gerar_menu_pergunta(
-                    "Digite o número para seu novo sexo",
-                    ["1 - feminino", "2 - masculino"],
-                )
+                            if apenasnumeros.isdigit():
+                                editar[cpf]["telefone"] = apenasnumeros
+                                print("Alteração feita com sucesso!");o = input("pressione enter para continuar...");break
+                            else:
+                                print("Erro! Caracter Inválido");o = input("pressione enter para continuar...")
+                        salvar_arquivo(editar)
+                        break
+                    case "6":
+                        while True:
+                            limpar_tela()
+                            quero_editar2 = gerar_menu_pergunta(
+                                "Informe o CPF do dependente que você quer editar: "
+                            )
+                            nome_com_apenas_letras = gerar_menu_pergunta(
+                                "Informe o novo nome do dependente: ",
+                            )
+                            
+                            if nome_com_apenas_letras.isalpha():
+                                editar[cpf]["terceiros"][quero_editar2]["nome"] = nome_com_apenas_letras
+                                print("Alteração feita com sucesso!");o = input("pressione enter para continuar...");break
+                            else:
+                                print("Erro! Caracter Inválido");o = input("pressione enter para continuar...")
+                        salvar_arquivo(editar)
+                        break
+                    case "7":
+                        while True:
+                            limpar_tela()
+                            quero_editar2 = gerar_menu_pergunta(
+                                "Informe o CPF do dependente que você quer editar: "
+                            )
+                            apenasnumeros = gerar_menu_pergunta(
+                                "Informe a nova data de nascimento (dd-mm-aaaa): "
+                            )
+                            data_nascimento, erro = validar_data_nascimento(apenasnumeros)
 
-                if mudarsexo == "1":
-                    editar[cpf]["sexo"] = "fem"
-                    print("Alteração feita com sucesso!")
-                elif mudarsexo == "2":
-                    editar[cpf]["sexo"] = "masc"
-                    print("Alteração feita com sucesso!")
-                else:
-                    print("Opção Inválida!")
-                    return
+                            if data_nascimento is None:
+                                print(erro)
+                            editar[cpf]["terceiros"][quero_editar2][
+                                "data_nascimento"
+                            ] = data_nascimento
+                            print("Alteração feita com sucesso!");o = input("pressione enter para continuar...");break
+                        salvar_arquivo(editar)
+                        break
+                    case _:
+                        print("Opção Invalida.\n")
+                        o = input("pressione enter para continuar...")
+                
 
-                calculo(editar)
-                vencimento(editar)
-
-            case "3":
-                editar[cpf]["email"] = gerar_menu_pergunta(
-                    "Informe o novo E-mail.",
-                )
-                print("Alteração feita com sucesso!")
-
-            case "4":
-                apenasnumeros = gerar_menu_pergunta(
-                    "Informe a nova data de nascimento (dd-mm-aaaa): "
-                )
-
-                if apenasnumeros.isdigit():
-                    editar[cpf]["data_nascimento"] = apenasnumeros
-                    print("Alteração feita com sucesso!")
-                else:
-                    print("Erro! Caracter Inválido")
-                    return
-
-                calculo(editar)
-                vencimento(editar)
-
-            case "5":
-                apenasnumeros = gerar_menu_pergunta(
-                    "Informe o novo telefone.",
-                )
-
-                if apenasnumeros.isdigit():
-                    editar[cpf]["telefone"] = apenasnumeros
-                    print("Alteração feita com sucesso!")
-                else:
-                    print("Erro! Caracter Inválido")
-                    return
-
-            case "6":
-                quero_editar2 = gerar_menu_pergunta(
-                    "Informe o CPF do dependente que você quer editar: "
-                )
-                nome_com_apenas_letras = gerar_menu_pergunta(
-                    "Informe o novo nome do dependente: ",
-                )
-
-                if nome_com_apenas_letras.isalpha():
-                    editar[cpf]["terceiros"][quero_editar2][
-                        "nome"
-                    ] = nome_com_apenas_letras
-                    print("Alteração feita com sucesso!")
-                else:
-                    print("Erro! Caracter Inválido")
-                    return
-
-            case "7":
-                quero_editar2 = gerar_menu_pergunta(
-                    "Informe o CPF do dependente que você quer editar."
-                )
-                apenasnumeros = gerar_menu_pergunta(
-                    "Informe a nova data de nascimento: (dd-mm-aaaa)"
-                )
-                data_nascimento, erro = validar_data_nascimento(apenasnumeros)
-
-                if data_nascimento is None:
-                    print(erro)
-                    return
-
-                editar[cpf]["terceiros"][quero_editar2][
-                    "data_nascimento"
-                ] = data_nascimento
-                print("Alteração feita com sucesso!")
-
-            case _:
-                print("\033[31m" + "Opção Invalida.\n")
-                input(
-                    "\n"
-                    + "\033[38;2;143;0;255m"
-                    + "Pressione enter para continuar..."
-                    + "\033[0m"
-                )
-                return
-
-        salvar_arquivo(editar)
-
-    else:
-        print("\033[31m" + "Desculpe, o CPF informado não foi encontrado!")
-        input(
-            "\n"
-            + "\033[38;2;143;0;255m"
-            + "Pressione enter para continuar..."
-            + "\033[0m"
-        )
-
+        else:
+            print("Desculpe, o CPF informado não foi encontrado!")
+            o = input("pressione enter para continuar...")
+    
 
 # Marcos
 def remover():

@@ -117,7 +117,6 @@ def calculo(dados):
                         )
                     )
                 )
-                breakpoint()
                 acrec2 = planod * 0.20
         acrec3 = (plano * 0.3) if idade_atual < 13 else 0
         acrec4 = (plano * 0.4) if idade_atual >= 60 else 0
