@@ -953,7 +953,7 @@ def lps():
             + f"{"Data venc.":<11}"
             + "\033[0m"
         )
-        print("\033[30;47m" + "-" * 144 + "\033[0m")
+        print("\033[30;47m" + "-" * 145 + "\033[0m")
 
         for chave, item in dados.items():
             data_n = str(item["data_nascimento"])
@@ -989,7 +989,6 @@ def listagem_geral():
         input("\n\033[38;2;143;0;255mPressione enter para continuar...\033[0m")
         return
 
-    # CABEÇALHO
     print(
         "\033[30;47m"
         + f"{'Tipos':<12}│"
@@ -1016,7 +1015,6 @@ def listagem_geral():
         _, idade = validar_data_nascimento(data_n)
         titular = "Titular" if item["titular"] else "Dependente"
 
-        # TITULAR
         print(
             "\033[30;47m"
             + f"{titular:<12}│"
@@ -1032,8 +1030,7 @@ def listagem_geral():
             + f"{data_v[6:8] + "-" + data_v[4:6] + "-" + data_v[0:4]:<12}"
             + "\033[0m"
         )
-
-        # DEPENDENTES
+        
         for cpf_dep, dep in item["terceiros"].items():
             data_dep = str(dep["data_nascimento"])
             data_dep = f"{data_dep[6:8] + "-" + data_dep[4:6] + "-" + data_dep[0:4]}"
