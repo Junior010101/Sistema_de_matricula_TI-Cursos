@@ -625,14 +625,13 @@ def editar_cliente():
                             limpar_tela()
 
                             quero_editar2 = gerar_menu_pergunta(
-                                "Informe o CPF do dependente que você quer editar: "
+                                "Informe o CPF do dependente que você quer editar (000.000.000-00): "
                             )
 
                             nome_com_apenas_letras = gerar_menu_pergunta(
                                 "Informe o novo nome do dependente: ",
                             )
-
-                            if nome_com_apenas_letras.isalpha():
+                            if nome_com_apenas_letras.replace(" ", "").isalpha():
                                 editar[cpf]["terceiros"][quero_editar2]["nome"] = nome_com_apenas_letras
                                 
                                 salvar_arquivo(editar)
