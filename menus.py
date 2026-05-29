@@ -509,7 +509,7 @@ def editar_cliente():
         elif cpf in editar:
             while True:
                 limpar_tela()
-                quero_editar = gerar_menu_pergunta("Informe o número do dado que você quer editar: ",["1 - Nome","2 - Sexo","3 - E-mail","4 - Data de Nasc.","5 - Telefone","6 - Nome de depen.","7 - Data.nasc. depen."])
+                quero_editar = gerar_menu_pergunta("Informe o número do dado que você quer editar: ",["1 - Nome","2 - Plano","3 - Sexo","4 - E-mail","5 - Data de Nasc.","6 - Telefone","7 - Nome de depen.","8 - Data.nasc.depen."])
 
                 match quero_editar:
                     case "1":
@@ -531,8 +531,54 @@ def editar_cliente():
                                 o = input("pressione enter para continuar...")
                                 limpar_tela()
                                 return
-
                     case "2":
+                        while True:
+                            limpar_tela()
+                            mudarplano = gerar_menu_pergunta("Informe o novo plano:",["1- Diamante","2- Ouro","3- Prata","4- Esmeralda"])
+
+                            if mudarplano == "1":
+                                editar[cpf]["plano_saude"]["plano"] = "Diamante"
+                                calculo(editar)
+                                salvar_arquivo(editar)
+                                print("Plano alterado com sucesso!")
+                                o = input("pressione enter para continuar...")
+                                limpar_tela()
+                                return
+                            
+                            elif mudarplano == "2":
+                                editar[cpf]["plano_saude"]["plano"] = "Ouro"
+                                calculo(editar)
+                                salvar_arquivo(editar)
+                                print("Plano alterado com sucesso!")
+                                o = input("pressione enter para continuar...")
+                                limpar_tela()
+                                return
+                            
+                            elif mudarplano == "3":
+                                editar[cpf]["plano_saude"]["plano"] = "Prata"
+                                calculo(editar)
+                                salvar_arquivo(editar)
+                                print("Plano alterado com sucesso!")
+                                o = input("pressione enter para continuar...")
+                                limpar_tela()
+                                return
+                            
+                            elif mudarplano == "4":
+                                editar[cpf]["plano_saude"]["plano"] = "Esmeralda"
+                                calculo(editar)
+                                salvar_arquivo(editar)
+                                print("Plano alterado com sucesso!")
+                                o = input("pressione enter para continuar...")
+                                limpar_tela()
+                                return
+                            
+                            else:
+                                print("Opção Inválida!")
+                                o = input("pressione enter para continuar...")
+                                limpar_tela()
+                                return
+
+                    case "3":
                         while True:
                             limpar_tela()
                             mudarsexo = gerar_menu_pergunta("informe o sexo:",["1- Fem","2- Masc: "])
@@ -565,7 +611,7 @@ def editar_cliente():
                                 limpar_tela()
                                 return
 
-                    case "3":
+                    case "4":
                         limpar_tela()
                         editar[cpf]["email"] = gerar_menu_pergunta("Informe o novo E-mail: ")
                         
@@ -575,7 +621,7 @@ def editar_cliente():
                         limpar_tela()
                         return
 
-                    case "4":
+                    case "5":
                         while True:
                             limpar_tela()
                             apenasnumeros = gerar_menu_pergunta("Informe a nova data de nascimento (dd-mm-aaaa): ")
@@ -599,7 +645,7 @@ def editar_cliente():
                                 limpar_tela()
                                 return
 
-                    case "5":
+                    case "6":
                         while True:
                             limpar_tela()
                             apenasnumeros = gerar_menu_pergunta("Informe o novo telefone: ")
@@ -620,7 +666,7 @@ def editar_cliente():
                                 limpar_tela()
                                 return
 
-                    case "6":
+                    case "7":
                         while True:
                             limpar_tela()
 
@@ -646,7 +692,7 @@ def editar_cliente():
                                 limpar_tela()
                                 return
 
-                    case "7":
+                    case "8":
                         while True:
                             limpar_tela()
 
