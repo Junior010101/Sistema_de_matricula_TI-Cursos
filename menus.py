@@ -181,8 +181,7 @@ def cadastrar_cliente():
                 )
                 return
 
-            opcao = opcoes[opcao]
-            clientes[cpf]["plano_saude"]["plano"] = opcao
+            
 
             escolha = gerar_menu_pergunta(
                 "Você possui algum dependente? Sim: (S) ou Não: (N)"
@@ -571,7 +570,8 @@ def editar_cliente():
                                 o = input("pressione enter para continuar...")
                                 limpar_tela()
                                 return
-                            
+
+
                             else:
                                 print("Opção Inválida!")
                                 o = input("pressione enter para continuar...")
@@ -669,14 +669,12 @@ def editar_cliente():
                     case "7":
                         while True:
                             limpar_tela()
-
                             quero_editar2 = gerar_menu_pergunta(
-                                "Informe o CPF do dependente que você quer editar (000.000.000-00): "
-                            )
+                                "Informe o CPF do dependente que você quer editar (000.000.000-00): ")
+                            
+                            quero_editar2 = (quero_editar2.replace(".", "").replace("-", ""))
 
-                            nome_com_apenas_letras = gerar_menu_pergunta(
-                                "Informe o novo nome do dependente: ",
-                            )
+                            nome_com_apenas_letras = gerar_menu_pergunta("Informe o novo nome do dependente: ",)
                             if nome_com_apenas_letras.replace(" ", "").isalpha():
                                 editar[cpf]["terceiros"][quero_editar2]["nome"] = nome_com_apenas_letras
                                 
@@ -697,12 +695,11 @@ def editar_cliente():
                             limpar_tela()
 
                             quero_editar2 = gerar_menu_pergunta(
-                                "Informe o CPF do dependente que você quer editar: "
-                            )
-
+                                "Informe o CPF do dependente que você quer editar: ")
+                            
+                            quero_editar2 = (quero_editar2.replace(".", "").replace("-", ""))
                             apenasnumeros = gerar_menu_pergunta(
-                                "Informe a nova data de nascimento (dd-mm-aaaa): "
-                            )
+                                "Informe a nova data de nascimento (dd-mm-aaaa): ")
 
                             data_nascimento, erro = validar_data_nascimento(apenasnumeros)
 
